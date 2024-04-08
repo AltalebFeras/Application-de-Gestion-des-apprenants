@@ -1,0 +1,116 @@
+body {
+  background: linear-gradient(to right, #0b99d5, #0bc1c9, #a5d985, #c3975b);
+  background-repeat: no-repeat;
+  border: 1px solid black;
+  padding: 1rem;
+  max-width: 1440px;
+}
+form {
+  max-width: 600px;
+  margin: 10rem auto;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to left, #0b99d5, #0bc1c9, #a5d985, #c3975b);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+fieldset {
+  border: 1px solid #ddd;
+  background: linear-gradient(to right, #ffcccc 0%, #ccffcc 33%, #ccccff 66%);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+}
+
+
+
+legend {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+input:hover,
+a:hover {
+  background-color: #b8e9ed;
+}
+
+input:user-valid {
+  border: 2px solid green;
+}
+
+input:user-valid + span::before {
+  content: "✓";
+  color: green;
+}
+
+input:user-invalid {
+  border: 2px solid red;
+}
+
+input:user-invalid + span::before {
+  content: "✖";
+  color: red;
+}
+
+.logo {
+  width: 200px;
+  height: 38px;
+}
+
+input[type="number"],
+input[type="email"],
+input[type="password" i],
+input[type="text"] {
+  padding: 0.5rem;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  max-width: 20rem;
+  margin-bottom: 2rem;
+  
+}
+label {
+  margin-bottom: 0.2rem;
+  margin-right: 0.2rem;
+}
+
+#header {
+  background: linear-gradient(to left, #ffcccc 0%, #ccffcc 33%, #ccccff 66%);
+  padding: 2rem;
+  max-width: 1440px;
+  display: FLEX;
+  flex-direction: row;
+  justify-content: space-between;
+}
+a{
+  text-decoration: none;
+  color: rgb(163, 23, 23);
+}
+
+footer {
+  max-width: 1440px;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 0.8em;
+  color: #01020d;
+  background: linear-gradient(to right, #ffcccc 0%, #ccffcc 33%, #ccccff 66%);
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#liensReseaux {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+#logoYt,
+#logoInsta,
+#logoFb {
+  width: 2rem;
+  height: 2rem;
+}
+
+#togglePassword{
+  cursor: pointer;
+}
