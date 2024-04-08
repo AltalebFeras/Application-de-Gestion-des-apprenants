@@ -1,14 +1,11 @@
+<div id="main-page">
 <?php
-
 include_once __DIR__ . '/Includes/header.php';
 include_once __DIR__ . '/Includes/colonne.php';
-
 ?>
 
 
-<div id="main-page"></div>
-
-  <!-- <div id="error_message">
+<div id="error_message">
     <?php
     if (isset($_SESSION['error_message'])) {
       echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error_message'] . '</div>';
@@ -32,12 +29,16 @@ include_once __DIR__ . '/Includes/colonne.php';
       </div>
     </fieldset>
   </form>
-   -->
-
-</div>
-
+  
 
 
 <?php
 include_once __DIR__ . '/Includes/footer.php';
 ?>
+</div>
+
+
+ 
+
+
+

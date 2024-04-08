@@ -39,15 +39,34 @@ switch ($route) {
     } else {
       if ($methode === 'POST') {
         $HomeController->authAdmin($_POST['motDePasseAdmin']);
+        
       } else {
         $HomeController->indexAdmin();
       }
     }
     break;
 
-    case HOME_URL . 'dashboard':
-    $UtilisateurController->showDashboard();
+    case HOME_URL . 'connexion':
+      if (isset($_SESSION['connecté'])) {
+        header('location: /dashboard');
+        die;
+      } else {
+        if ($methode === 'POST') {
+          $UtilisateurController->connexionUtilisateur();
+          die;
+        } else {
+          $HomeController->indexConnexion();
+        }
+      }
+      break;
 
+    case HOME_URL . 'dashboard':
+      if (isset($_SESSION['connecté'])) {
+    $UtilisateurController->showDashboard(); 
+    die;
+  } else {
+    $HomeController->page404();
+  }
 
     break;
 

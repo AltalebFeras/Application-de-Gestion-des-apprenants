@@ -2,9 +2,10 @@
 include_once __DIR__ . '/Includes/header.php';
 ?>
 
+<a href="/" class="btn btn-info" onclick="route()">Home</a>
 
 <div class="main">
-    <form action="admin" method="post">
+    <form action="/dashboard" method="post" onsubmit="route()">
 
         <fieldset>
             <h1>Administration</h1>
@@ -16,8 +17,7 @@ include_once __DIR__ . '/Includes/header.php';
                     Erreur de connexion.
                 </div>
             <?php } ?>
-            <input type="submit" class="btn btn-info" value="Se connecter">
-
+            <input  type="submit" class="btn btn-info" value="Se connecter">
         </fieldset>
     </form>
 </div>

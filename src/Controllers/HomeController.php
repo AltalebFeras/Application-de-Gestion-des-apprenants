@@ -34,16 +34,34 @@ class HomeController
   public function authAdmin(string $motDePasseAdmin): void
   {
       
-      if ($motDePasseAdmin === 'admin' && $_SESSION['role']= 'admin') {
-      $_SESSION['connecté'] = true;
+      if ($motDePasseAdmin === 'admin' ){
+      $_SESSION['connecté'] = true && $_SESSION['role']= 'admin' ;
       header('location: ' . HOME_URL . 'dashboard');
       die();
     } else {
       header('location: ' . HOME_URL .'admin'. '?erreur=connexion');
     }
   }
+  public function connexion(): void
+  {
+    if (isset($_GET['erreur'])) {
+      $erreur = htmlspecialchars($_GET['erreur']);
+    } else {
+      $erreur = '';
+    }
 
+    $this->render("connexion", ["erreur" => $erreur]);
+  }
 
+  public function indexConnexion(): void
+  {
+      $erreur = isset($_GET['erreur']) ? htmlspecialchars($_GET['erreur']) : '';
+      
+      $_SESSION['role']= 'user';
+  
+  
+      $this->render("connexion", ["erreur" => $erreur]);
+  }
   public function quit()
   {
     session_destroy();

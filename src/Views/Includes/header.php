@@ -29,7 +29,8 @@
     <?php if (isset($_SESSION['connecté'])) { ?>
       <a href="deconnexion" class="btn btn-info"  >Déconnexion</a>
     <?php } else { ?>
-      <a href="/"><img src="/assets/images/logo.svg"  class="logo"  alt="Simplon logo" onclick="route()"></a>
+      <a href="/" onclick="route()"><img src="/assets/images/logo.svg"  class="logo"  alt="Simplon logo" ></a>
       <a   href="/admin" class="btn btn-info" onclick="route()" >Admin</a>
+   
     <?php } ?>
   </div>
