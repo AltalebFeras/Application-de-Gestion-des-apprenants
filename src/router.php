@@ -1,17 +1,9 @@
 <?php
 
 use src\Controllers\HomeController;
-use src\Controllers\UtilisateurController;
-use src\Controllers\ReservationController;
-
-
 use src\Services\Routing;
 
 $HomeController = new HomeController;
-$UtilisateurController = new UtilisateurController;
-$ReservationController = new ReservationController;
-
-
 
 $route = $_SERVER['REDIRECT_URL'];
 $methode = $_SERVER['REQUEST_METHOD'];
@@ -24,45 +16,17 @@ switch ($route) {
       header('location: ' . HOME_URL . 'dashboard');
       die;
     }
-    if ($methode === 'POST') {
-      $UtilisateurController->traitmentUtilisateur();
+    if ( !isset($_SESSION['connecté']) && $methode === 'POST') {
+      $HomeController->authAdmin($_POST['Email'] ,$_POST['Mot_De_Passe']);
+   
     } else {
       $HomeController->index();
     }
     break;
 
-
-  case HOME_URL . 'admin':
-    if (isset($_SESSION['connecté'])) {
-      header('location: /dashboard');
-      die;
-    } else {
-      if ($methode === 'POST') {
-        $HomeController->authAdmin($_POST['motDePasseAdmin']);
-        
-      } else {
-        $HomeController->indexAdmin();
-      }
-    }
-    break;
-
-    case HOME_URL . 'connexion':
-      if (isset($_SESSION['connecté'])) {
-        header('location: /dashboard');
-        die;
-      } else {
-        if ($methode === 'POST') {
-          $UtilisateurController->connexionUtilisateur();
-          die;
-        } else {
-          $HomeController->indexConnexion();
-        }
-      }
-      break;
-
     case HOME_URL . 'dashboard':
       if (isset($_SESSION['connecté'])) {
-    $UtilisateurController->showDashboard(); 
+    $HomeController->showDashboard(); 
     die;
   } else {
     $HomeController->page404();
@@ -80,15 +44,12 @@ switch ($route) {
       switch ($route) {
         case $routeComposee[1] == "compte":
           if ($methode === "POST") {
-            $UtilisateurController->supprimerUtilisateur();
-            // $utilisateurID = $_SESSION['utilisateur'];
+           
           }
           if (isset($_SESSION["connecté"])) {
-            $UtilisateurController->afficherCompte();
           }
           break;
         case $routeComposee[1] == "reservation":
-          $UtilisateurController->afficherReservation();
           break;
         
         case $routeComposee[1] == 'deconnexion':
@@ -98,7 +59,7 @@ switch ($route) {
         default:
           if (isset($_SESSION["connecté"])) {
 
-            $UtilisateurController->showDashboard();
+            $HomeController->showDashboard();
           }
           break;
       }

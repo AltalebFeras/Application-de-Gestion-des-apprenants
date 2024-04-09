@@ -1,70 +1,34 @@
-const route = (event) => {
-  event = event || window.event;
-  event.preventDefault();
-  window.history.pushState({}, "", event.target.href);
-  handleLocation();
-};
+// JavaScript code for navigation and form submission
+function navigateTo(url) {
+  fetch(url)
+      .then(response => response.text())
+      .then(html => {
+          document.getElementById('main-content').innerHTML = html;
+      })
+      .catch(error => console.error('Error:', error));
+}
 
-const routes = {
-  404: "404",
-  "/": "/",
-  "/connexion": "/connexion",
-  "/admin": "admin",
-  "/dashboard": "dashboard",
-};
+// Function to handle form submission
+function submitForm() {
+  fetch(HOME_URL, {
+      method: "POST",
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify('Ma première requête')
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+}
 
-const handleLocation = async () => {
-  const path = window.location.pathname;
-  const route = routes[path] || routes[404];
-  const html = await fetch(route).then((data) => data.text());
-  document.getElementById("main-page").innerHTML = html;
-};
+// Add event listeners to your navigation links/buttons
+document.getElementById('btn_Connexion').addEventListener('click', function() {
+  navigateTo('/dashboard');
+});
 
-window.onpopstate = handleLocation;
-window.route = route;
-
-handleLocation();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// document
-//   .getElementById("togglePassword")
-//   .addEventListener("click", function () {
-//     var motDePasseInput = document.getElementById("motDePasse");
-//     var motDePasseVerifierInput = document.getElementById("motDePasseVerifier");
-//     var togglePasswordSpan = document.getElementById("togglePassword");
-
-//     if (motDePasseInput.type === "password") {
-//       motDePasseInput.type = "text";
-//       motDePasseVerifierInput.type = "text";
-//       togglePasswordSpan.textContent = "Cacher le MDP";
-//     } else {
-//       motDePasseInput.type = "password";
-//       motDePasseVerifierInput.type = "password";
-//       togglePasswordSpan.textContent = "Voir le MDP";
-//     }
-//   });
-
-
- 
+// Add event listener to the form submission button
+document.getElementById('btn_Connexion').addEventListener('click', function (e){
+  e.preventDefault(); // Prevent default form submission behavior
+  submitForm();
+});

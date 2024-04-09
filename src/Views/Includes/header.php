@@ -11,9 +11,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <link rel="stylesheet" href="/assets/style/style.css">
-  <!-- le css à verifier pour le repartir -->
-  <link rel="stylesheet" href="<?= HOME_URL ?>assets/css/main.css">
-  <link rel="stylesheet" href="<?= HOME_URL ?>assets/css/form.css">
+ 
   <?php if (isset($_SESSION['connecté'])) { ?>
     <link rel="stylesheet" href="<?= HOME_URL ?>assets/css/dashboard.css">
     <script src="<?= HOME_URL ?>assets/scripts/dashboard.js" defer></script>
@@ -25,12 +23,29 @@
 
 <body>
 
-  <div id="header">
     <?php if (isset($_SESSION['connecté'])) { ?>
-      <a href="deconnexion" class="btn btn-info"  >Déconnexion</a>
-    <?php } else { ?>
-      <a href="/" onclick="route()"><img src="/assets/images/logo.svg"  class="logo"  alt="Simplon logo" ></a>
-      <a   href="/admin" class="btn btn-info" onclick="route()" >Admin</a>
-   
-    <?php } ?>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" href="#">SIMPLON</a>
+    </div>
+    <a href="deconnexion" class="btn btn-light"  >Déconnexion</a>
   </div>
+</nav>
+    <?php } else { ?>
+ 
+  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" href="#">SIMPLON</a>
+    </div>
+    <button type="button" class="btn btn-light">Connexion</button>
+  </div>
+</nav>
+<?php } ?>
