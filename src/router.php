@@ -16,8 +16,8 @@ switch ($route) {
       header('location: ' . HOME_URL . 'dashboard');
       die;
     }
-    if ( !isset($_SESSION['connecté']) && $methode === 'POST') {
-      $HomeController->authAdmin($_POST['Email'] ,$_POST['Mot_De_Passe']);
+    if ( !isset($_SESSION['connecté']) && $methode == 'POST') {
+      $HomeController->authAdmin();
    
     } else {
       $HomeController->index();
@@ -28,7 +28,11 @@ switch ($route) {
       if (isset($_SESSION['connecté'])) {
     $HomeController->showDashboard(); 
     die;
-  } else {
+  } 
+  elseif($methode == 'POST'){
+
+  }
+  else {
     $HomeController->page404();
   }
 
@@ -54,6 +58,7 @@ switch ($route) {
         
         case $routeComposee[1] == 'deconnexion':
           $HomeController->quit();
+          
 
           break;
         default:

@@ -1,34 +1,63 @@
-// JavaScript code for navigation and form submission
-function navigateTo(url) {
-  fetch(url)
-      .then(response => response.text())
-      .then(html => {
-          document.getElementById('main-content').innerHTML = html;
-      })
-      .catch(error => console.error('Error:', error));
+const submissionButton = document.getElementById("submissionButton");
+const body = document.getElementById("body");
+
+const inputEmail = document.getElementById("Email");
+const inputPassword = document.getElementById("Mot_De_Passe");
+
+if (submissionButton) {
+  submissionButton.addEventListener("click", handleFormSubmission);
 }
 
-// Function to handle form submission
-function submitForm() {
-  fetch(HOME_URL, {
+function handleFormSubmission(event) {
+  event.preventDefault();
+
+  const inputEmailValue = inputEmail.value;
+  const inputPasswordValue = inputPassword.value;
+
+  const url = "/";
+  const user = {
+    email: inputEmailValue,
+    password: inputPasswordValue,
+  };
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  })
+    .then((response) => {
+      return response.text();
+    })
+    .then((result) => {
+      body.innerHTML = "";
+      body.innerHTML = result;
+    });
+}
+
+const logoutBtn = document.getElementById("logoutBtn");
+logoutBtn.addEventListener("click", logoutUser);
+function logoutUser() {
+  const url = "/deconnexion"; 
+  fetch(url, {
       method: "POST",
       headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
       },
-      body: JSON.stringify('Ma première requête')
   })
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error:', error));
+  .then((response) => {
+      return response.json();
+  })
+  .then((result) => {
+      if (result.success) {
+          window.location.href = HOME_URL;
+      } else {
+          console.log("Logout failed");
+      }
+  })
+  .catch((error) => {
+      console.log("AJAX request failed: ", error);
+  });
 }
 
-// Add event listeners to your navigation links/buttons
-document.getElementById('btn_Connexion').addEventListener('click', function() {
-  navigateTo('/dashboard');
-});
-
-// Add event listener to the form submission button
-document.getElementById('btn_Connexion').addEventListener('click', function (e){
-  e.preventDefault(); // Prevent default form submission behavior
-  submitForm();
-});

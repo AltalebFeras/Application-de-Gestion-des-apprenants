@@ -13,8 +13,9 @@
   <link rel="stylesheet" href="/assets/style/style.css">
  
   <?php if (isset($_SESSION['connecté'])) { ?>
-    <link rel="stylesheet" href="<?= HOME_URL ?>assets/css/dashboard.css">
     <script src="<?= HOME_URL ?>assets/scripts/dashboard.js" defer></script>
+    <script src="<?= HOME_URL ?>assets/scripts/script.js" defer></script>
+
 <?php } else { ?>
     <script src="<?= HOME_URL ?>assets/scripts/script.js" defer></script>
 <?php } ?>
@@ -32,7 +33,9 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <a class="navbar-brand" href="#">SIMPLON</a>
     </div>
-    <a href="deconnexion" class="btn btn-light"  >Déconnexion</a>
+    <!-- <a href="deconnexion"  class="btn btn-light"  >Déconnexion</a> -->
+    <button type="button" id="logoutBtn" class="btn btn-light">Déconnexion</button>
+
   </div>
 </nav>
     <?php } else { ?>

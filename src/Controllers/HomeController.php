@@ -22,43 +22,58 @@ class HomeController
  
 
 
-  public function indexAdmin(): void
-  {
-    $erreur = isset($_GET['erreur']) ? htmlspecialchars($_GET['erreur']) : 'error';
-
-    $_SESSION['role']= 'admin';
-
-    $this->render("admin", ["erreur" => $erreur]);
-  }
   
-  public function auth(){
-    // Check if it's an AJAX request
-    if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
-        // Get the data from the request body
-        $data = file_get_contents('php://input');
-
-        // Decode the JSON data
-        $data = json_decode($data);
-
-        // Process the data (in this case, just echoing it back)
-        echo json_encode("Server response: I received ".$data);
-        exit(); // Make sure to exit to prevent further execution
-    }
-}
-
-  public function authAdmin(string $Email, string $Mot_De_Passe): void 
+public function authAdmin()
 {
-    if ($Email === 'admin@simplon.co' && $Mot_De_Passe === 'admin') {
-        $_SESSION['connecté'] = true;
-        $_SESSION['role'] = 'admin';
-        header('Location: ' . HOME_URL . 'dashboard');
-        exit();
+    $request = file_get_contents('php://input');
+
+    if ($request) {
+        $decodedRequest = json_decode($request);
+
+        if ($decodedRequest) {
+            $email = htmlspecialchars($decodedRequest->email);
+            $password = htmlspecialchars($decodedRequest->password); 
+            if ($email === 'admin@simplon.co' && $password === 'admin') { 
+                $_SESSION['connecté'] = true;
+                $_SESSION['role'] = 'admin';
+             
+                var_dump($_SESSION['role']);
+  
+                // $userId = 188;
+
+                include_once __DIR__ . '/../Views/dashboard.php';
+            } else {
+                exit(); // Removed unnecessary exit() statement
+            }
+        } else {
+            header('Location: ' . HOME_URL . '?erreur=connexion');
+            exit();
+        }
     } else {
-        header('Location: ' . HOME_URL . 'admin' . '?erreur=connexion');
+        header('Location: ' . HOME_URL . '?erreur=connexion');
         exit();
     }
 }
-// For example, in your HomeController:
+
+
+ 
+  public function quit()
+  {
+    session_destroy();
+    echo json_encode(["success" => true]);
+    exit;
+  }
+
+  public function page404(): void
+  {
+    header("HTTP/1.1 404 Not Found");
+    $this->render('404');
+  }
+
+
+
+
+
 public function showDashboard()
 {
     if (isset($_SESSION["connecté"])) {
@@ -68,17 +83,4 @@ public function showDashboard()
     }
 }
 
- 
-  public function quit()
-  {
-    session_destroy();
-    header('location: ' . HOME_URL);
-    die();
-  }
-
-  public function page404(): void
-  {
-    header("HTTP/1.1 404 Not Found");
-    $this->render('404');
-  }
 }

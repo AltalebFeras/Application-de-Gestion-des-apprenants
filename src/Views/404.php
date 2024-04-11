@@ -8,5 +8,4 @@ include_once __DIR__ . '/Includes/header.php';
     <button onclick="location.href='<?=HOME_URL?>'" class="center">Retourner à l'accueil</button>
 
 </div>
-<?php
-include_once __DIR__ . '/Includes/footer.php';
+  
