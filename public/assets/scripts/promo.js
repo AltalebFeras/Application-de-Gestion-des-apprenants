@@ -19,6 +19,7 @@ export function retourVersTousLesPromo() {
         body.innerHTML = data;
         servicePromo.displayFormPromotion();
         servicePromo.deconnexion();
+        servicePromo.createNewPromo();
       })
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);

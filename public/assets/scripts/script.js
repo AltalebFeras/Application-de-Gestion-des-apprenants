@@ -35,30 +35,35 @@ function handleFormSubmission(event) {
     .then((result) => {
       body.innerHTML = "";
       body.innerHTML = result;
-      serviceNavDec.displayFormPromotion();
       serviceNavDec.deconnexion();
+      serviceNavDec.displayFormPromotion();
     });
 };
 
  
   
-
-const deconnexionBtn = document.getElementById("deconnexionBtn");
-deconnexionBtn.addEventListener("click", () => {
-    fetch("/deconnexion")
-      .then((response) => {
-        if (response.ok) {
-          return response.text();
-        } else {
-          throw new Error("Logout failed");
-        }
-      })
-      .then((result) => {
-        body.innerHTML = "";
-        body.innerHTML = result;
-      })
-      .catch((error) => {
-        console.log("AJAX request failed: ", error);
-      });
-  });
- 
+document.addEventListener("DOMContentLoaded", () => {
+  const deconnexionBtn = document.getElementById("deconnexionBtn");
+  
+  if (deconnexionBtn) {
+    deconnexionBtn.addEventListener("click", () => {
+      fetch("/deconnexion")
+        .then((response) => {
+          if (response.ok) {
+            return response.text();
+          } else {
+            throw new Error("Logout failed");
+          }
+        })
+        .then((result) => {
+          document.body.innerHTML = ""; // Clearing body content
+          document.body.innerHTML = result; // Updating body content
+        })
+        .catch((error) => {
+          console.log("AJAX request failed: ", error);
+        });
+    });
+  } else {
+    console.error("Button with id 'deconnexionBtn' not found.");
+  }
+});

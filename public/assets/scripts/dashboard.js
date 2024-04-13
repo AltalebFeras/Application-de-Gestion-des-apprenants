@@ -41,10 +41,57 @@ export function displayFormPromotion() {
       .then((data) => {
         contentPromotion.innerHTML = data;
         servicePromo.retourVersTousLesPromo();
+        createNewPromo();
+
         
       })
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);
       });
   });
+}
+
+export function createNewPromo() {
+  const createNewPromoBtn = document.getElementById("createNewPromoBtn");
+  console.log(createNewPromoBtn);
+  const body = document.body;
+
+  const inputPromoNom = document.getElementById("promoNom");
+  const inputDateDebut = document.getElementById("dateDebut");
+  const inputDateFin = document.getElementById("dateFin");
+  const inputPlaceDispo = document.getElementById("placeDispo");
+
+ 
+    createNewPromoBtn.addEventListener("click",(event)=> {
+    event.preventDefault();
+
+    const inputPromoNomValue = inputPromoNom.value;
+    const inputDateDebutValue = inputDateDebut.value;
+    const inputDateFinValue = inputDateFin.value;
+    const inputPlaceDispoValue = inputPlaceDispo.value;
+
+    const url = "/ajouterPromotion";
+
+    const promo = {
+      promoNom: inputPromoNomValue,
+      dateDebut: inputDateDebutValue,
+      dateFin: inputDateFinValue,
+      placeDispo: inputPlaceDispoValue,
+    };
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(promo),
+    })
+      .then((response) => {
+        return response.text();
+      })
+      .then((result) => {
+        body.innerHTML = "";
+        body.innerHTML = result;
+      });
+  })
 }
