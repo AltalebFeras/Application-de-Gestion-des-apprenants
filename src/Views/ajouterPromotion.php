@@ -1,5 +1,7 @@
 <h3 class="m-3">Création d’une promotion</h3>
 
+<p class="m-3">tableau des promotions de Simplon</p>
+
 <button id="btnRetourVersTousLesPromo" class=" mb-3 btn btn-primary">Retour</button>
 
 <form class="p-3 m-5 bg-light text-dark" method="post">
