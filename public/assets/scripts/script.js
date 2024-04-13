@@ -1,3 +1,5 @@
+import * as serviceNavDec from "./dashboard.js";
+
 const submissionButton = document.getElementById("submissionButton");
 const body = document.getElementById("body");
 
@@ -33,31 +35,30 @@ function handleFormSubmission(event) {
     .then((result) => {
       body.innerHTML = "";
       body.innerHTML = result;
+      serviceNavDec.displayFormPromotion();
+      serviceNavDec.deconnexion();
     });
-}
+};
 
-const logoutBtn = document.getElementById("logoutBtn");
-logoutBtn.addEventListener("click", logoutUser);
-function logoutUser() {
-  const url = "/deconnexion"; 
-  fetch(url, {
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json",
-      },
-  })
-  .then((response) => {
-      return response.json();
-  })
-  .then((result) => {
-      if (result.success) {
-          window.location.href = HOME_URL;
-      } else {
-          console.log("Logout failed");
-      }
-  })
-  .catch((error) => {
-      console.log("AJAX request failed: ", error);
+ 
+  
+
+const deconnexionBtn = document.getElementById("deconnexionBtn");
+deconnexionBtn.addEventListener("click", () => {
+    fetch("/deconnexion")
+      .then((response) => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error("Logout failed");
+        }
+      })
+      .then((result) => {
+        body.innerHTML = "";
+        body.innerHTML = result;
+      })
+      .catch((error) => {
+        console.log("AJAX request failed: ", error);
+      });
   });
-}
-
+ 

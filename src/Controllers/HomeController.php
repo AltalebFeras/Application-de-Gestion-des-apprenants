@@ -11,57 +11,61 @@ class HomeController
 
   public function index(): void
   {
-    if (isset($_GET['erreur'])) {
-      $erreur = htmlspecialchars($_GET['erreur']);
-    } else {
-      $erreur = '';
-    }
-
-    $this->render("accueil", ["erreur" => $erreur]);
+    // $this->render("connexion", ["erreur" => ""]);
+    include_once __DIR__ . '/../Views/connexion.php';
   }
- 
 
 
-  
-public function authAdmin()
-{
+
+
+  public function authAdmin()
+  {
     $request = file_get_contents('php://input');
 
     if ($request) {
-        $decodedRequest = json_decode($request);
+      $decodedRequest = json_decode($request);
 
-        if ($decodedRequest) {
-            $email = htmlspecialchars($decodedRequest->email);
-            $password = htmlspecialchars($decodedRequest->password); 
-            if ($email === 'admin@simplon.co' && $password === 'admin') { 
-                $_SESSION['connecté'] = true;
-                $_SESSION['role'] = 'admin';
-             
-                var_dump($_SESSION['role']);
-  
-                // $userId = 188;
+      if ($decodedRequest) {
+        $email = htmlspecialchars($decodedRequest->email);
+        $password = htmlspecialchars($decodedRequest->password);
+        if ($email === 'admin@simplon.co' && $password === '0') {
+          $_SESSION['connecté'] = true;
+          $_SESSION['role'] = 'admin';
 
-                include_once __DIR__ . '/../Views/dashboard.php';
-            } else {
-                exit(); // Removed unnecessary exit() statement
-            }
+          // var_dump($_SESSION['role']);
+          // var_dump($_SESSION['connecté']);
+
+          // $userId = 188;
+
+          include_once __DIR__ . '/../Views/dashboard.php';
         } else {
-            header('Location: ' . HOME_URL . '?erreur=connexion');
-            exit();
+          exit();
         }
-    } else {
+      } else {
         header('Location: ' . HOME_URL . '?erreur=connexion');
         exit();
+      }
+    } else {
+      header('Location: ' . HOME_URL . '?erreur=connexion');
+      exit();
     }
-}
+  }
 
+  public function displayFormAjouterPromotion()
+  {
+    include_once __DIR__ . '/../Views/ajouterPromotion.php';
+  }
 
- 
+  public function displayDashboard()
+  {
+    include_once __DIR__ . '/../Views/dashboard.php';
+  }
+
   public function quit()
   {
     session_destroy();
-    echo json_encode(["success" => true]);
-    exit;
+    $_SESSION['connecté'] = false;
+    include_once __DIR__ . '/../Views/connexion.php';
   }
 
   public function page404(): void
@@ -69,18 +73,4 @@ public function authAdmin()
     header("HTTP/1.1 404 Not Found");
     $this->render('404');
   }
-
-
-
-
-
-public function showDashboard()
-{
-    if (isset($_SESSION["connecté"])) {
-      $this->render("dashboard", ["erreur" => ""]);
-    } else {
-        $this->page404();
-    }
-}
-
 }
