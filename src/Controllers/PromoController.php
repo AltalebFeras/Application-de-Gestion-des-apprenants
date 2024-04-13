@@ -27,6 +27,7 @@ class PromoController
               $promoRepository = new PromoRepository();
               $promoRepository->insertPromo($promoNom, $dateDebut, $dateFin, $placeDispo);
 
+            //   $ID_Promo = $promoRepository->getLastInsertedId();
 
               include_once __DIR__ . '/../Views/dashboard.php';
           }

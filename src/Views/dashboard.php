@@ -1,8 +1,13 @@
 <?php
 
+namespace src\Repositories;
+
 include_once __DIR__ . '/Includes/header.php';
 include_once __DIR__ . '/Includes/colonne.php';
 
+
+$promoRepository = new PromoRepository();
+$promotions = $promoRepository->getAllPromotions();
 
 ?>
 
@@ -68,27 +73,29 @@ if (isset($_SESSION['role'])) {
           <table class="table  my-3 mx-2">
             <thead>
               <tr>
+              <th class="d-none" scope="col">IDPromo</th>
                 <th scope="col">Promotions</th>
                 <th scope="col">Début</th>
                 <th scope="col">Fin</th>
                 <th scope="col">Place</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
-
-              <tr>
-
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>
-                  <button type="button" class="btn btn-link">Voir</button>
-                  <button type="button" class="btn btn-link">Editer</button>
-                  <button type="button" class="btn btn-link">Supprimer</button>
-                </td>
-              </tr>
-
+              <?php foreach ($promotions as $promo) : ?>
+                <tr>
+                  <td class="d-none" ><?php echo $promo->getIDPromo(); ?></td>
+                  <td><?php echo $promo->getNom(); ?></td>
+                  <td><?php echo $promo->getDateDebut(); ?></td>
+                  <td><?php echo $promo->getDateFin(); ?></td>
+                  <td><?php echo $promo->getPlaceDispo(); ?></td>
+                  <td>
+                    <button type="button" class="btn btn-link">Voir</button>
+                    <button type="button" class="btn btn-link">Editer</button>
+                    <button type="button" class="btn btn-link">Supprimer</button>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
             </tbody>
           </table>
 
