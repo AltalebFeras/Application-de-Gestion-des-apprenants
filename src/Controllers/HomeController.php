@@ -61,6 +61,11 @@ class HomeController
     include_once __DIR__ . '/../Views/dashboard.php';
   }
 
+  public function displayThisPromo()
+  {
+    include_once __DIR__ . '/../Views/displayThisPromo.php';
+  }
+
   public function quit()
   {
     session_destroy();

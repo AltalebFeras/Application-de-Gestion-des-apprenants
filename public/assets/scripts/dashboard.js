@@ -95,3 +95,32 @@ export function createNewPromo() {
       });
   })
 }
+
+export function displayThisPromo() {
+  let displayThisPromoBtn = document.getElementById("displayThisPromoBtn");
+
+ const body = document.body;
+
+  displayThisPromoBtn.addEventListener("click", () => {
+    fetch("/displayThisPromo")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.text();
+      })
+      .then((data) => {
+        body.innerHTML = "";
+        body.innerHTML = data;
+        servicePromo.retourVersTousLesPromo1();
+        displayFormPromotion();
+         
+
+       
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  });
+}
+

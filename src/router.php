@@ -26,43 +26,47 @@ $routeComposee = Routing::routeComposee($route);
 //     }
 //   }
 // } 
-  switch ($route) {
-    case HOME_URL:
+switch ($route) {
+  case HOME_URL:
 
-      if ($methode == 'POST') {
-        $HomeController->authAdmin();
-      } else {
-        $HomeController->index();
-      }
-      break;
+    if ($methode == 'POST') {
+      $HomeController->authAdmin();
+    } else {
+      $HomeController->index();
+    }
+    break;
 
-    case HOME_URL . 'dashboard':
-      if ($methode == 'POST') {
-        $PromoController->createPromo();
-      } else {
-        $HomeController->displayDashboard();
-      }
+  case HOME_URL . 'dashboard':
+    if ($methode == 'POST') {
+      $PromoController->createPromo();
+    } else {
+      $HomeController->displayDashboard();
+    }
 
-      break;
+    break;
 
-    case HOME_URL . 'ajouterPromotion':
+  case HOME_URL . 'ajouterPromotion':
 
-      if ($methode == 'POST') {
-        $PromoController->createPromo();
-      } elseif ($methode == 'GET') {
-        $HomeController->displayFormAjouterPromotion();
-      }
-      break;
+    if ($methode == 'POST') {
+      $PromoController->createPromo();
+    } elseif ($methode == 'GET') {
+      $HomeController->displayFormAjouterPromotion();
+    }
+    break;
+
+  case HOME_URL . 'displayThisPromo':
+    $HomeController->displayThisPromo();
+
+    break;
 
 
 
-    case HOME_URL . 'deconnexion':
-      $HomeController->quit();
-      break;
+  case HOME_URL . 'deconnexion':
+    $HomeController->quit();
+    break;
 
 
-    default:
-      $HomeController->page404();
-      break;
-  }
-
+  default:
+    $HomeController->page404();
+    break;
+}
