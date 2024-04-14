@@ -2,12 +2,11 @@
 
 <p class="m-3">tableau des promotions de Simplon</p>
 
-<button id="btnRetourVersTousLesPromo" class=" mb-3 btn btn-primary">Retour</button>
 
 <form class="p-3 m-5 bg-light text-dark" method="post">
 
     <input type="hidden" name="form_id" value="1">
-    
+
     <div class="mb-3">
         <label for="promoNom" class="form-label">Nom de la promotion</label>
         <input type="text" name="promoNom" class="form-control" id="promoNom" aria-describedby="emailHelp">
@@ -26,6 +25,9 @@
     </div>
 
     <div class="  d-flex justify-content-between mb-3">
-        <button id="createNewPromoBtn" type="submit" class="btn btn-primary">Sauvegarder</button>
+        <input id="btnRetourVersTousLesPromo" class=" mb-3 btn btn-primary" value="Retour" > 
+
+        <input id="createNewPromoBtn" type="submit" class="mb-3 btn btn-primary" value="Sauvegarder"> 
+
     </div>
 </form>

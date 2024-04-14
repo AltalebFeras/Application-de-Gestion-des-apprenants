@@ -1,4 +1,4 @@
-import * as servicePromo from "./promo.js";
+import * as servicePromo from "./utilisateur.js";
 
 export function deconnexion() {
   const body = document.body;
@@ -92,7 +92,6 @@ export function createNewPromo() {
         })
         .then((result) => {
           body.innerHTML = result;
-          displayThisPromo();
         });
     });
   } else {
@@ -115,8 +114,8 @@ export function displayThisPromo() {
         })
         .then((data) => {
           body.innerHTML = data;
-
-          retourVersTousLesPromo1();
+          servicePromo.displayFormAjouterApprenant();
+          servicePromo.retourVersTousLesPromoDeApprenant();
         })
         .catch((error) => {
           console.error("There was a problem with the fetch operation:", error);
@@ -147,9 +146,7 @@ export function retourVersTousLesPromo() {
           body.innerHTML = data;
           displayFormPromotion();
           deconnexion();
-          createNewPromo();
           displayThisPromo();
-          retourVersTousLesPromo1();
         })
         .catch((error) => {
           console.error("There was a problem with the fetch operation:", error);

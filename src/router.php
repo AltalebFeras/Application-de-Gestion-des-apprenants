@@ -2,10 +2,12 @@
 
 use src\Controllers\HomeController;
 use src\Controllers\PromoController;
+use src\Controllers\UtilisateurController;
 use src\Services\Routing;
 
 $HomeController = new HomeController;
 $PromoController = new PromoController;
+$UtilisateurController = new UtilisateurController;
 
 $route = $_SERVER['REDIRECT_URL'];
 $methode = $_SERVER['REQUEST_METHOD'];
@@ -59,6 +61,14 @@ switch ($route) {
 
     break;
 
+    case HOME_URL . 'ajouterApprenant':
+
+      if ($methode == 'POST') {
+        $UtilisateurController->treatmentCreateNewUser();
+      } elseif ($methode == 'GET') {
+        $HomeController->displayFormAjouterApprenant();
+      }
+      break;
 
 
   case HOME_URL . 'deconnexion':

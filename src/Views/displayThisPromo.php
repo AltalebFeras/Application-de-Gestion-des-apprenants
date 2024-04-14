@@ -28,6 +28,7 @@ if (isset($_SESSION['role'])) {
             </li>
 
         </ul>
+        <div id="contentUtilisateurDiv">
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
@@ -128,7 +129,7 @@ if (isset($_SESSION['role'])) {
                         </div>
                         <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="profile1-tab">
 
-                            <div id="contentPromotion">
+                           
 
 
                                 <div class="d-flex justify-content-between my-3 mx-2">

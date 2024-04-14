@@ -66,6 +66,10 @@ class HomeController
     include_once __DIR__ . '/../Views/displayThisPromo.php';
   }
 
+public function displayFormAjouterApprenant(){
+  include_once __DIR__ . '/../Views/ajouterApprenant.php';
+
+}
   public function quit()
   {
     session_destroy();
