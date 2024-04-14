@@ -37,6 +37,8 @@ function handleFormSubmission(event) {
       body.innerHTML = result;
       serviceNavDec.deconnexion();
       serviceNavDec.displayFormPromotion();
+      serviceNavDec.displayThisPromo()
+      
     });
 };
 

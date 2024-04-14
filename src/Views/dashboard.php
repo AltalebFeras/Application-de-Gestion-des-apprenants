@@ -89,7 +89,7 @@ if (isset($_SESSION['role'])) {
                   <td><?php echo $promo->getDateFin(); ?></td>
                   <td><?php echo $promo->getPlaceDispo(); ?></td>
                   <td>
-                    <button type="button" class="btn btn-link">Voir</button>
+                    <button type="button" id="displayThisPromoBtn" class="btn btn-link">Voir</button>
                     <button type="button" class="btn btn-link">Editer</button>
                     <button type="button" class="btn btn-link">Supprimer</button>
                   </td>
