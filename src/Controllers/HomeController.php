@@ -28,7 +28,7 @@ class HomeController
       if ($decodedRequest) {
         $email = htmlspecialchars($decodedRequest->email);
         $password = htmlspecialchars($decodedRequest->password);
-        if ($email === 'admin@simplon.co' && $password === '0') {
+        if ($email === 'admin@simplon.co' && $password === '$') {
           $_SESSION['connecté'] = true;
           $_SESSION['role'] = 'admin';
 
