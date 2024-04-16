@@ -1,5 +1,20 @@
 // import * as service from "./script.js";
 
+function appendNewScripts() {
+  const mainPromo = document.getElementById("mainPromo");
+  let scripts = mainPromo.querySelectorAll("script");
+
+  for (let i = 0; i < scripts.length; i++) {
+    if (!scripts[i].innerText) {
+      let script = document.createElement("script");
+      script.src = scripts[i].src;
+
+      mainPromo.removeChild(scripts[i]);
+      mainPromo.appendChild(script);
+    }
+  }
+}
+
 document.getElementById("deconnexionBtn").addEventListener("click", () => {
   const body = document.body;
   fetch("/deconnexion")
@@ -31,28 +46,10 @@ document
     ajouterPromoDiv.classList.add("d-none");
   });
 
-document.getElementById("displayThisPromoBtn").addEventListener("click", () => {
-  const bodyDashboard = document.getElementById("bodyDashboard");
-
-  fetch("/displayThisPromo")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.text();
-    })
-    .then((data) => {
-      bodyDashboard.innerHTML = "";
-      bodyDashboard.innerHTML = data;
-    });
-});
-
-document
-  .getElementById("btnRetourVersTousLesPromo1")
-  .addEventListener("click", () => {
+  document.getElementById("displayThisPromoBtn").addEventListener("click", () => {
     const bodyDashboard = document.getElementById("bodyDashboard");
-
-    fetch("/dashboard")
+  
+    fetch("/displayThisPromo")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -62,8 +59,6 @@ document
       .then((data) => {
         bodyDashboard.innerHTML = "";
         bodyDashboard.innerHTML = data;
-      })
-      .catch((error) => {
-        console.error("There was a problem with the fetch operation:", error);
+        appendNewScripts()
       });
   });

@@ -54,8 +54,8 @@ if (isset($_SESSION['role'])) {
               ?>
             </div>
 
-            <div id="ajouterPromoDiv" class="d-none" >
-            <?php
+            <div id="ajouterPromoDiv" class="d-none">
+              <?php
               include_once __DIR__ . '/ajouterPromotion.php';
               ?>
             </div>
@@ -66,6 +66,12 @@ if (isset($_SESSION['role'])) {
 
       </div>
 
+      <div id="main">
+        <script src="assets/scripts/dashboard.js" type="module"></script>
+        <script src="assets/scripts/utilisateur.js" type="module"></script>
+        <script src="assets/scripts/createPromo.js" type="module"></script>
+      </div>
+    </div>
 
 
 
@@ -74,23 +80,18 @@ if (isset($_SESSION['role'])) {
 
 
 
-  <?php
+
+<?php
   } elseif ($_SESSION['role'] == 'user') {
     echo "<h2>Bonjour " . $_SESSION['prenom'] . "!</h2>";
   }
 }
-  ?>
+?>
 
 
-    </div>
 
-  <div id="main">
-  <script src="assets/scripts/dashboard.js" type="module"></script>
-  <script src="assets/scripts/utilisateur.js" type="module"></script>
-  <script src="assets/scripts/createPromo.js" type="module"></script>
-  </div>
 
- <?php
+<?php
 include_once __DIR__ . '/Includes/footer.php';
 
 ?>

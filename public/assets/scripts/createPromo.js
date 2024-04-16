@@ -45,31 +45,3 @@
 
       });
   });
-
-
-// function displayThisPromo() {
-//   let displayThisPromoBtn = document.getElementById("displayThisPromoBtn");
-//   const body = document.body;
-
-//   if (displayThisPromoBtn) {
-//     displayThisPromoBtn.addEventListener("click", () => {
-//       fetch("/displayThisPromo")
-//         .then((response) => {
-//           if (!response.ok) {
-//             throw new Error("Network response was not ok");
-//           }
-//           return response.text();
-//         })
-//         .then((data) => {
-//           body.innerHTML = data;
-//           servicePromo.displayFormAjouterApprenant();
-//           servicePromo.retourVersTousLesPromoDeApprenant();
-//         })
-//         .catch((error) => {
-//           console.error("There was a problem with the fetch operation:", error);
-//         });
-//     });
-//   } else {
-//     console.error("displayThisPromoBtn not found in the DOM");
-//   }
-// }
