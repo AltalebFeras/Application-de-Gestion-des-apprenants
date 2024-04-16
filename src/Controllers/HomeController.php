@@ -32,30 +32,26 @@ class HomeController
           $_SESSION['connected'] = true;
           $_SESSION['role'] = 'admin';
 
-          // var_dump($_SESSION['role']);
-          // var_dump($_SESSION['connecté']);
-
-          // $userId = 188;
-
           include_once __DIR__ . '/../Views/dashboard.php';
-          
-        } else {
-          exit();
-        }
-      } else {
-        header('Location: ' . HOME_URL . '?erreur=connexion');
+        // echo json_encode(array("success" => true));
         exit();
-      }
     } else {
-      header('Location: ' . HOME_URL . '?erreur=connexion');
-      exit();
+        echo json_encode(array("success" => false, "error" => "Incorrect email or password."));
+        exit();
     }
+} else {
+    echo json_encode(array("success" => false, "error" => "Invalid request data."));
+    exit();
+}
+} else {
+echo json_encode(array("success" => false, "error" => "Empty request data."));
+exit();
+}
   }
 
   public function displayFormAjouterPromotion()
   {
     include_once __DIR__ . '/../Views/ajouterPromotion.php';
-    
   }
 
   public function displayDashboard()
@@ -68,20 +64,20 @@ class HomeController
     include_once __DIR__ . '/../Views/displayThisPromo.php';
   }
 
-public function displayFormAjouterApprenant(){
-  include_once __DIR__ . '/../Views/ajouterApprenant.php';
+  public function displayFormAjouterApprenant()
+  {
+    include_once __DIR__ . '/../Views/ajouterApprenant.php';
+  }
 
-}
+  public function displayAllPromotions()
+  {
 
-public function displayAllPromotions(){
-
-  include_once __DIR__ . '/../Views/components/promotions.php';
-
-}
+    include_once __DIR__ . '/../Views/components/promotions.php';
+  }
   public function quit()
   {
     session_destroy();
-    $_SESSION['connecté'] = false;
+    $_SESSION['connected'] = false;
     include_once __DIR__ . '/../Views/connexion.php';
   }
 
