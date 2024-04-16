@@ -1,5 +1,18 @@
 
+function appendNewScripts() {
+  const mainTableScripts = document.getElementById("mainTableScripts");
+  let scripts = mainTableScripts.querySelectorAll("script");
 
+  for (let i = 0; i < scripts.length; i++) {
+    if (!scripts[i].innerText) {
+      let script = document.createElement("script");
+      script.src = scripts[i].src;
+
+      mainTableScripts.removeChild(scripts[i]);
+      mainTableScripts.appendChild(script);
+    }
+  }
+}
 
   document.getElementById("createNewPromoBtn").addEventListener("click", (event) => {
 
@@ -42,6 +55,7 @@
         tablePromoDiv.innerHTML = "";
         tablePromoDiv.innerHTML = result;
         ajouterPromoDiv.classList.add('d-none')
+        appendNewScripts()
 
       });
   });

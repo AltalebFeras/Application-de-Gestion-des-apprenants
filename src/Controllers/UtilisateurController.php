@@ -77,7 +77,8 @@ class UtilisateurController
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }
     
-                include_once __DIR__ . '/../Views/dashboard.php';
+            include_once __DIR__ . '/../Views/components/contentUtilisateur.php';
+
             }
         }
     }

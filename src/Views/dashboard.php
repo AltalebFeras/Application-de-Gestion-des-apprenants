@@ -2,30 +2,32 @@
 
 namespace src\Repositories;
 
-include_once __DIR__ . '/Includes/header.php';
 
+include_once __DIR__ . '/Includes/header.php';
 
 $promoRepository = new PromoRepository();
 $promotions = $promoRepository->getAllPromotions();
 
 ?>
-
-<?php
-include_once __DIR__ . '/../Views/components/navbar.php';
-
-?>
-
-<?php
-if (isset($_SESSION['role'])) {
-  if ($_SESSION['role'] == 'admin') {
-    echo "<h2 class= m-2 >Bonjour Admin!</h2>";
-    var_dump($_SESSION['role'])
+  <?php
 
 
-?>
+  include_once __DIR__ . '/../Views/components/navbar.php';
+  
+  ?>
+  <div class="m-2" id="bodyDashboard">
+
+  <?php
+  if (isset($_SESSION['role'])) {
+    if ($_SESSION['role'] == 'admin') {
+      echo "<h2 class= m-2 >Bonjour Admin!</h2>";
+      var_dump($_SESSION['role'])
 
 
-    <div class="m-2" id="bodyDashboard">
+  ?>
+
+
+
 
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -68,10 +70,9 @@ if (isset($_SESSION['role'])) {
 
       <div id="main">
         <script src="assets/scripts/dashboard.js" type="module"></script>
-        <script src="assets/scripts/utilisateur.js" type="module"></script>
         <script src="assets/scripts/createPromo.js" type="module"></script>
       </div>
-    </div>
+</div>
 
 
 
@@ -82,10 +83,10 @@ if (isset($_SESSION['role'])) {
 
 
 <?php
-  } elseif ($_SESSION['role'] == 'user') {
-    echo "<h2>Bonjour " . $_SESSION['prenom'] . "!</h2>";
+    } elseif ($_SESSION['role'] == 'user') {
+      echo "<h2>Bonjour " . $_SESSION['prenom'] . "!</h2>";
+    }
   }
-}
 ?>
 
 
