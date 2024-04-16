@@ -1,4 +1,4 @@
-export function createNewUser() {
+ function createNewUser() {
   const createNewUtilisateurBtn = document.getElementById("createNewUtilisateurBtn");
   console.log(createNewUtilisateurBtn);
   const body = document.body;
@@ -42,7 +42,7 @@ export function createNewUser() {
   }
 }
 
-export function displayFormAjouterApprenant() {
+  function displayFormAjouterApprenant() {
   let ajouterApprenantBtn = document.getElementById("ajouterApprenantBtn");
   console.log(ajouterApprenantBtn);
   const contentUtilisateurDiv = document.getElementById(
@@ -71,7 +71,8 @@ export function displayFormAjouterApprenant() {
   }
 }
 
-export function retourVersTousLesPromoDeApprenant() {
+
+ function retourVersTousLesPromoDeApprenant() {
   const btnRetourVersTousLesPromoDeApprenant = document.getElementById(
     "btnRetourVersTousLesPromoDeApprenant"
   );
@@ -97,7 +98,7 @@ export function retourVersTousLesPromoDeApprenant() {
   });
 }
 
-export function confirmerMDP(){
+ function confirmerMDP(){
 
   const createNewUtilisateurBtn = document.getElementById("createNewUtilisateurBtn");
   console.log(createNewUtilisateurBtn);

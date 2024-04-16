@@ -13,7 +13,7 @@ use src\Services\Reponse;
 
 class UtilisateurController
 {
-    use Reponse;
+    // use Reponse;
 
     public function treatmentCreateNewUser()
     {

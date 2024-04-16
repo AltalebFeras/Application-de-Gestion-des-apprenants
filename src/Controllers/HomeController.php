@@ -7,7 +7,7 @@ use src\Services\Reponse;
 class HomeController
 {
 
-  use Reponse;
+  // use Reponse;
 
   public function index(): void
   {
@@ -29,7 +29,7 @@ class HomeController
         $email = htmlspecialchars($decodedRequest->email);
         $password = htmlspecialchars($decodedRequest->password);
         if ($email === 'admin@simplon.co' && $password === '$') {
-          $_SESSION['connecté'] = true;
+          $_SESSION['connected'] = true;
           $_SESSION['role'] = 'admin';
 
           // var_dump($_SESSION['role']);
@@ -38,6 +38,7 @@ class HomeController
           // $userId = 188;
 
           include_once __DIR__ . '/../Views/dashboard.php';
+          
         } else {
           exit();
         }
@@ -54,6 +55,7 @@ class HomeController
   public function displayFormAjouterPromotion()
   {
     include_once __DIR__ . '/../Views/ajouterPromotion.php';
+    
   }
 
   public function displayDashboard()
@@ -70,6 +72,12 @@ public function displayFormAjouterApprenant(){
   include_once __DIR__ . '/../Views/ajouterApprenant.php';
 
 }
+
+public function displayAllPromotions(){
+
+  include_once __DIR__ . '/../Views/components/promotions.php';
+
+}
   public function quit()
   {
     session_destroy();
@@ -80,6 +88,6 @@ public function displayFormAjouterApprenant(){
   public function page404(): void
   {
     header("HTTP/1.1 404 Not Found");
-    $this->render('404');
+    include_once __DIR__ . '/../Views/404.php';
   }
 }

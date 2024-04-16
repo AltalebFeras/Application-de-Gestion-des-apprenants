@@ -1,7 +1,6 @@
 <?php
 
 namespace src\Repositories;
-include_once __DIR__ . '/Includes/header.php';
 
 
 $promoRepository = new PromoRepository();
@@ -12,7 +11,6 @@ $promotions = $promoRepository->getAllPromotions();
 <?php
 if (isset($_SESSION['role'])) {
     if ($_SESSION['role'] == 'admin') {
-        echo "<h2 class= m-2 >Bonjour Admin!</h2>";
 ?>
 
 <button id="btnRetourVersTousLesPromo1" class=" mb-3 btn btn-primary">Retour</button>

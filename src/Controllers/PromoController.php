@@ -8,7 +8,7 @@ use src\Services\Reponse;
 class PromoController
 {
 
-  use Reponse;
+  // use Reponse;
 
   
   public function createPromo()
@@ -29,7 +29,10 @@ class PromoController
 
             //   $ID_Promo = $promoRepository->getLastInsertedId();
 
-              include_once __DIR__ . '/../Views/dashboard.php';
+            include_once __DIR__ . '/../Views/components/tablePromo.php';
+            // include_once __DIR__ . '/../Views/components/promotions.php';
+
+            
           }
       }
   }

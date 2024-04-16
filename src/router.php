@@ -11,23 +11,7 @@ $UtilisateurController = new UtilisateurController;
 
 $route = $_SERVER['REDIRECT_URL'];
 $methode = $_SERVER['REQUEST_METHOD'];
-$routeComposee = Routing::routeComposee($route);
 
-
-// if ($methode === 'POST') {
-//   if (isset($_POST['form_id'])) {
-//     $formId = $_POST['form_id'];
-//     switch ($formId) {
-//       case '2':
-//         $PromoController->createPromo();
-
-//         break;
-
-//       default:
-//         break;
-//     }
-//   }
-// } 
 switch ($route) {
   case HOME_URL:
 
@@ -39,13 +23,17 @@ switch ($route) {
     break;
 
   case HOME_URL . 'dashboard':
-    if ($methode == 'POST') {
-      $PromoController->createPromo();
-    } else {
+    {
       $HomeController->displayDashboard();
     }
 
     break;
+
+
+    case HOME_URL . 'promotions':
+      $HomeController->displayAllPromotions();
+  
+      break;
 
   case HOME_URL . 'ajouterPromotion':
 
@@ -54,12 +42,19 @@ switch ($route) {
     } elseif ($methode == 'GET') {
       $HomeController->displayFormAjouterPromotion();
     }
+    else{
+      $HomeController->displayFormAjouterPromotion();
+
+    }
     break;
+
+
 
   case HOME_URL . 'displayThisPromo':
     $HomeController->displayThisPromo();
 
     break;
+
 
     case HOME_URL . 'ajouterApprenant':
 
