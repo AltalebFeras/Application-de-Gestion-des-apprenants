@@ -1,4 +1,3 @@
-
 function appendNewScripts() {
   const mainTableScripts = document.getElementById("mainTableScripts");
   let scripts = mainTableScripts.querySelectorAll("script");
@@ -13,9 +12,23 @@ function appendNewScripts() {
     }
   }
 }
+function appendNewScriptsUtilisateur() {
+  const mainUtilisateurScripts = document.getElementById("mainUtilisateurScripts");
+  let scripts = mainUtilisateurScripts.querySelectorAll("script");
 
-  document.getElementById("createNewPromoBtn").addEventListener("click", (event) => {
+  for (let i = 0; i < scripts.length; i++) {
+    if (!scripts[i].innerText) {
+      let script = document.createElement("script");
+      script.src = scripts[i].src;
 
+      mainUtilisateurScripts.removeChild(scripts[i]);
+      mainUtilisateurScripts.appendChild(script);
+    }
+  }
+}
+document
+  .getElementById("createNewPromoBtn")
+  .addEventListener("click", (event) => {
     event.preventDefault();
     const tablePromoDiv = document.getElementById("tablePromoDiv");
     // let promotionsDiv = document.getElementById('promotionsDiv');
@@ -51,11 +64,60 @@ function appendNewScripts() {
         return response.text();
       })
       .then((result) => {
-        promotionsDiv.classList.remove('d-none')
+        promotionsDiv.classList.remove("d-none");
         tablePromoDiv.innerHTML = "";
         tablePromoDiv.innerHTML = result;
-        ajouterPromoDiv.classList.add('d-none')
-        appendNewScripts()
-
+        ajouterPromoDiv.classList.add("d-none");
+        appendNewScripts();
       });
   });
+
+
+  
+
+  function attachEventListeners() {
+    let boutonsVoirPromo = document.querySelectorAll(".voir-btn");
+    boutonsVoirPromo.forEach(function (boutonVoirThisPromo) {
+      boutonVoirThisPromo.addEventListener("click", function() {
+        let idDePromoAVoir = this.getAttribute("data-promo-id");
+        voirThisPromo(idDePromoAVoir);
+      });
+    });
+  }
+
+
+
+
+function voirThisPromo(idDePromoAVoir) {
+
+    const bodyDashboard = document.getElementById("bodyDashboard");
+ 
+  const url = "/displayThisPromo";
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ idDePromoAVoir: idDePromoAVoir }),
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.text();
+  })
+  .then((data) => {
+    bodyDashboard.innerHTML = "";
+    bodyDashboard.innerHTML = data;
+    appendNewScriptsUtilisateur()
+    attachEventListeners();
+  })
+  .catch(error => {
+    console.error('There has been a problem with your fetch operation:', error);
+  });
+}
+
+attachEventListeners();
+
+
+

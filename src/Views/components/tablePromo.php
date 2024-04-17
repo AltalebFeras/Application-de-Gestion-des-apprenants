@@ -1,14 +1,5 @@
-<?php
-
-namespace src\Repositories;
-
-$promoRepository = new PromoRepository();
-$promotions = $promoRepository->getAllPromotions();
-
-?>
-
 <p class="my-3 mx-2">tableau des promotions de Simplon</p>
-<table class="table  my-3 mx-2">
+<table class="table  my-3 mx-2" id="tableContainer">
   <thead>
     <tr>
       <th class="d-none" scope="col">IDPromo</th>
@@ -28,10 +19,14 @@ $promotions = $promoRepository->getAllPromotions();
         <td><?php echo $promo->getDateFin(); ?></td>
         <td><?php echo $promo->getPlaceDispo(); ?></td>
         <td>
-          <button type="button" id="displayThisPromoBtn" class="btn btn-link">Voir</button>
-          <button type="button" class="btn btn-link">Editer</button>
-          <button type="button" class="btn btn-link">Supprimer</button>
+          <button type="button" id="displayThisPromoBtn" data-promo-id="<?php echo $promo->getIDPromo(); ?>" class="voir-btn  btn btn-link">Voir</button>
+
+          <button type="button" id="editPromoBtn" data-promo-id="<?php echo $promo->getIDPromo(); ?>" class="edit-btn btn btn-link ">Editer</button>
+
+          <button type="button" id="deletePromoBtn" data-promo-id="<?php echo $promo->getIDPromo(); ?>" class="delete-btn btn btn-link ">Supprimer</button>
+
         </td>
+
       </tr>
     <?php endforeach; ?>
   </tbody>

@@ -3,7 +3,7 @@
 <p class="m-3">tableau des promotions de Simplon</p>
 
 
-<form class="p-3 m-5 bg-light text-dark" method="post">
+<form  data-set="id" class="p-3 m-5 bg-light text-dark" method="post">
 
     <input type="hidden" name="form_id" value="1">
 
@@ -32,3 +32,7 @@
     </div>
 
    </form>
+
+
+
+   
