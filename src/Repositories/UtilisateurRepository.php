@@ -57,37 +57,24 @@ class UtilisateurRepository
     {
         try {
             $query = $this->DB->query('SELECT * FROM ' . PREFIXE . 'utilisateurs');
-            $users = $query->fetchAll(PDO::FETCH_ASSOC);
+            $utilisateurs = $query->fetchAll(PDO::FETCH_ASSOC);
 
-            $utilisateursObjects = [];
-            foreach ($users as $user) {
-                $utilisateur = new Utilisateur();
-                $utilisateur->Nom = $user['Nom'];
-                $utilisateur->Prenom = $user['Prenom'];
-                $utilisateur->Email = $user['Date_Debut'];
-                $utilisateur->Compte_Active = $user['Date_Fin'];
-                $utilisateur->ID_Role = $user['Place_Dispo'];
-                $utilisateursObjects[] = $utilisateur;
+            $utilisateurObjects = [];
+            foreach ($utilisateurs as $utilisateur) {
+                $user = new Utilisateur();
+                $user->ID_Utilisateur = $utilisateur['ID_Utilisateur'];
+                $user->Nom = $utilisateur['Nom'];
+                $user->Prenom = $utilisateur['Prenom'];
+                $user->Email = $utilisateur['Email'];
+                $user->Compte_Active = $utilisateur['Compte_Active'];
+                $user->ID_Role = $utilisateur['ID_Role'];
+                $utilisateurObjects[] = $user;
             }
 
-            return $utilisateursObjects;
+            return $utilisateurObjects;
         } catch (PDOException $e) {
             return [];
         }
     }
 }
 
-// $to      = 'Email@destinataire.fr';
-// $subject = 'le sujet';
-// $message = 'Bonjour ! ça fonctionne !';
-// $headers = 'From: email@envoi.fr' . "\r\n" .
-// 'Reply-To: email@envoi.fr' . "\r\n" .
-// 'X-Mailer: PHP/' . phpversion();
-
-// $test = mail($to, $subject, $message, $headers);
-
-// if ($test) {
-//   echo "le mail a bien été envoyé.";
-// } else{
-//   var_dump($test); // reverra la valeur de la fonction mail, probablement false. Aller voir dans ce cas le fichier error.log dans C://wamp/sendmail/
-// }

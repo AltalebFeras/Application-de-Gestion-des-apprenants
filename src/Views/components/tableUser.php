@@ -5,27 +5,28 @@
     </div>
 
 
-
-
     <table class="table  my-3 mx-2">
         <thead>
             <tr>
-                <th class="d-none" scope="col">IDPromo</th>
+                <th class="d-non" scope="col">ID Utilisateur</th>
                 <th scope="col">Nom de famille</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Email</th>
                 <th scope="col">Compte activé</th>
                 <th scope="col">Rôle</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($promotions as $promo) : ?>
+            <?php foreach ($utilisateurs as $utilisateur) : ?>
                 <tr>
-                    <td class="d-none"><?php echo $promo->getIDPromo(); ?></td>
-                    <td><?php echo $promo->getNom(); ?></td>
-                    <td><?php echo $promo->getDateDebut(); ?></td>
-                    <td><?php echo $promo->getDateFin(); ?></td>
-                    <td><?php echo $promo->getPlaceDispo(); ?></td>
+                    <td class="d-non"><?php echo $utilisateur->getIDUtilisateur(); ?></td>
+                    <td><?php echo $utilisateur->getNom(); ?></td>
+                    <td><?php echo $utilisateur->getPrenom() ?></td>
+                    <td><?php echo $utilisateur->getEmail(); ?></td>
+                    <td><?php echo $utilisateur->getCompteActive(); ?></td>
+                    <td><?php if ($utilisateur->getIDRole() == 1) {echo "apprenant";}?></td>
+
                     <td>
                         <button type="button" class="btn btn-link">Editer</button>
                         <button type="button" class="btn btn-link">Supprimer</button>
@@ -34,7 +35,6 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-
 
 
 

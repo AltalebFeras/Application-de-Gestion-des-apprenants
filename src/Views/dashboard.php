@@ -1,12 +1,9 @@
 <?php
-
-namespace src\Repositories;
+include_once __DIR__ . '/../Services/callRepo.php';
 
 
 include_once __DIR__ . '/Includes/header.php';
 
-$promoRepository = new PromoRepository();
-$promotions = $promoRepository->getAllPromotions();
 
 ?>
   <?php

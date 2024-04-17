@@ -2,7 +2,7 @@
 <table class="table  my-3 mx-2" id="tableContainer">
   <thead>
     <tr>
-      <th class="d-none" scope="col">IDPromo</th>
+      <th class="d-noe" scope="col">IDPromo</th>
       <th scope="col">Promotions</th>
       <th scope="col">Début</th>
       <th scope="col">Fin</th>
@@ -13,7 +13,7 @@
   <tbody>
     <?php foreach ($promotions as $promo) : ?>
       <tr>
-        <td class="d-none"><?php echo $promo->getIDPromo(); ?></td>
+        <td class="d-noe promotion-id"><?php echo $promo->getIDPromo(); ?></td>
         <td><?php echo $promo->getNom(); ?></td>
         <td><?php echo $promo->getDateDebut(); ?></td>
         <td><?php echo $promo->getDateFin(); ?></td>
@@ -29,6 +29,7 @@
 
       </tr>
     <?php endforeach; ?>
+
   </tbody>
 </table>
 
