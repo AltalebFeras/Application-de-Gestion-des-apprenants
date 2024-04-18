@@ -35,7 +35,10 @@ class UtilisateurController
     
                 $UtilisateurRepository = new UtilisateurRepository();
                 $UtilisateurRepository->createUser($data);
-    
+            $utilisateurs = $UtilisateurRepository->getAllUtilisateurs(); 
+                
+
+
                 $mail = new PHPMailer(true);
                 try {
                     // Your SMTP configuration

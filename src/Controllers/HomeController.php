@@ -2,7 +2,7 @@
 
 namespace src\Controllers;
 
-use src\Services\Reponse;
+use src\Repositories\PromoRepository;
 
 class HomeController
 {
@@ -61,7 +61,12 @@ exit();
 
   public function displayThisPromo()
   {
+
+    $promoRepository = new PromoRepository();
+    $promoDetails = $promoRepository->getThisPromo();
+    
     include_once __DIR__ . '/../Views/displayThisPromo.php';
+
   }
 
   public function displayFormAjouterApprenant()

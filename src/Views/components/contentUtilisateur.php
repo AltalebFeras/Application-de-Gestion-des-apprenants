@@ -6,7 +6,12 @@
         <div class="card-body">
             <h5 class="card-title d-flex justify-content-start">Cours du jour</h5>
             <div class="card-text mb-3 bg-light">
-                <p class="card-text d-flex justify-content-start">DWWM3 - matin</p>
+                <p class="card-text d-flex justify-content-start"> <?php 
+
+echo $promoDetails['Nom'];
+var_dump($promoDetails);
+
+?> - matin</p>
                 <p class="card-text d-flex justify-content-end"><?php echo date('d-m-Y'); ?></p>
 
                 <div class="d-flex justify-content-end">
@@ -15,7 +20,11 @@
                 </div>
             </div>
             <div class="card-text mb-3 bg-light">
-                <p class="card-text d-flex justify-content-start">DWWM3 - après midi</p>
+                <p class="card-text d-flex justify-content-start"><?php 
+
+echo $promoDetails['Nom'];
+
+?> - après midi</p>
                 <p class="card-text d-flex justify-content-end"><?php echo date('d-m-Y'); ?></p>
                 <div class="d-flex justify-content-end">
                     <!-- <span class="badge text-bg-warning ">ajouter les cas</span> -->
@@ -32,12 +41,16 @@
 
             <div class="d-flex justify-content-between my-3 mx-2">
                 <div>
-                    <h3 class="m-3">Promotion <?php
-                                                // echo $promo->getNom(); 
-                                                ?></h3>
-                    <p class="m-3">informations générales de la <?php
-                                                                // echo $promo->getNom(); 
-                                                                ?></p>
+                    <h3 class="m-3">Promotion <?php 
+
+echo $promoDetails['Nom'];
+
+?></h3>
+                    <p class="m-3">informations générales de la <?php 
+
+echo $promoDetails['Nom'];
+
+?></p>
 
                 </div>
 

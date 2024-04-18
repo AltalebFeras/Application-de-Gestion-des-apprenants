@@ -74,7 +74,7 @@ class PromoRepository
         if ($requestPayload && isset($requestPayload->idDePromoAVoir)) {
             $idDePromoAVoir = htmlspecialchars($requestPayload->idDePromoAVoir);
     
-            $query = $this->DB->prepare('SELECT * FROM '. PREFIXE .' aga_promos WHERE ID_Promo = :idDePromoAVoir');
+            $query = $this->DB->prepare('SELECT * FROM '. PREFIXE .'Promos WHERE ID_Promo = :idDePromoAVoir');
     
             $query->bindParam(':idDePromoAVoir', $idDePromoAVoir, PDO::PARAM_INT);
     
