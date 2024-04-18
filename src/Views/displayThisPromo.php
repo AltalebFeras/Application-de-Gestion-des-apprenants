@@ -10,7 +10,7 @@ include_once __DIR__ . '/Includes/header.php';
 
 <?php
 if (isset($_SESSION['role'])) {
-    if ($_SESSION['role'] == 'admin') {
+    if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'formateur') {
 ?>
 
         <button id="btnRetourVersTousLesPromo1" class=" mb-3 btn btn-primary">Retour</button>

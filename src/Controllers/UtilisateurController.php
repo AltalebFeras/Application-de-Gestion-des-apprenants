@@ -26,7 +26,8 @@ class UtilisateurController
                 $data = [
                     'Nom' => htmlspecialchars($decodedRequest->Nom),
                     'Prenom' => htmlspecialchars($decodedRequest->Prenom),
-                    'Email' => htmlspecialchars($decodedRequest->Email)
+                    'Email' => htmlspecialchars($decodedRequest->Email),
+                    'ID_Role' => htmlspecialchars($decodedRequest->ID_Role)
                 ];
     
                 // Hash the email address using SHA-256
@@ -35,7 +36,6 @@ class UtilisateurController
     
                 $UtilisateurRepository = new UtilisateurRepository();
                 $UtilisateurRepository->createUser($data);
-            $utilisateurs = $UtilisateurRepository->getAllUtilisateurs(); 
                 
 
 
@@ -80,6 +80,8 @@ class UtilisateurController
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }
     
+            $utilisateurs = $UtilisateurRepository->getAllUtilisateurs(); 
+
             include_once __DIR__ . '/../Views/components/contentUtilisateur.php';
 
             }

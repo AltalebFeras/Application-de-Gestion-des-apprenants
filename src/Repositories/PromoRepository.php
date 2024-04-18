@@ -71,12 +71,12 @@ class PromoRepository
     
         $requestPayload = json_decode(file_get_contents('php://input'));
     
-        if ($requestPayload && isset($requestPayload->idDePromoAVoir)) {
-            $idDePromoAVoir = htmlspecialchars($requestPayload->idDePromoAVoir);
+        if ($requestPayload && isset($requestPayload->idThisPromo)) {
+            $idThisPromo = htmlspecialchars($requestPayload->idThisPromo);
     
-            $query = $this->DB->prepare('SELECT * FROM '. PREFIXE .'Promos WHERE ID_Promo = :idDePromoAVoir');
+            $query = $this->DB->prepare('SELECT * FROM '. PREFIXE .'Promos WHERE ID_Promo = :idThisPromo');
     
-            $query->bindParam(':idDePromoAVoir', $idDePromoAVoir, PDO::PARAM_INT);
+            $query->bindParam(':idThisPromo', $idThisPromo, PDO::PARAM_INT);
     
             $query->execute();
     
@@ -93,6 +93,21 @@ class PromoRepository
     
         return $promoData;
     }
-    
+  
+
+public function deletePromo($idThisPromo)
+{
+    $database = new Database();
+
+    $query = $database->getDB()->prepare('
+        DELETE FROM ' . PREFIXE . 'Promos WHERE ID_Promo = :ID_Promo
+    ');
+
+    $query->execute(['ID_Promo' => $idThisPromo]);
+}
+
+
+
+
 
 }

@@ -1,4 +1,3 @@
-// import * as service from "./script.js";
 
 function appendNewScripts() {
   const mainPromo = document.getElementById("mainPromo");

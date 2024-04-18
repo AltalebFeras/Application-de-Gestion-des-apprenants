@@ -12,28 +12,59 @@ function appendNewScripts() {
     }
   }
 }
-function appendNewScriptsUtilisateur() {
-  const mainUtilisateurScripts = document.getElementById("mainUtilisateurScripts");
-  let scripts = mainUtilisateurScripts.querySelectorAll("script");
 
-  for (let i = 0; i < scripts.length; i++) {
-    if (!scripts[i].innerText) {
-      let script = document.createElement("script");
-      script.src = scripts[i].src;
+function validatePromoForm() {
+  var promoNom = document.getElementById("promoNom").value;
+  var dateDebut = document.getElementById("dateDebut").value;
+  var dateFin = document.getElementById("dateFin").value;
+  var placeDispo = document.getElementById("placeDispo").value;
 
-      mainUtilisateurScripts.removeChild(scripts[i]);
-      mainUtilisateurScripts.appendChild(script);
-    }
+  var promoNomError = document.getElementById("promoNomError");
+  var dateDebutError = document.getElementById("dateDebutError");
+  var dateFinError = document.getElementById("dateFinError");
+  var placeDispoError = document.getElementById("placeDispoError");
+
+  promoNomError.textContent = "";
+  dateDebutError.textContent = "";
+  dateFinError.textContent = "";
+  placeDispoError.textContent = "";
+
+  var isValid = true;
+
+  if (promoNom === "") {
+    promoNomError.textContent = "Veuillez saisir un nom de promotion.";
+    isValid = false;
   }
+
+  if (dateDebut === "") {
+    dateDebutError.textContent = "Veuillez sélectionner une date de début.";
+    isValid = false;
+  }
+
+  if (dateFin === "") {
+    dateFinError.textContent = "Veuillez sélectionner une date de fin.";
+    isValid = false;
+  }
+
+  if (placeDispo === "") {
+    placeDispoError.textContent = "Veuillez saisir le nombre de places disponibles.";
+    isValid = false;
+  }
+
+  return isValid;
 }
+
+
 document
   .getElementById("createNewPromoBtn")
   .addEventListener("click", (event) => {
     event.preventDefault();
-    const tablePromoDiv = document.getElementById("tablePromoDiv");
-    // let promotionsDiv = document.getElementById('promotionsDiv');
-    // let ajouterPromoDiv = document.getElementById('ajouterPromoDiv');
 
+    if (!validatePromoForm()) {
+      return;
+    }
+    const tablePromoDiv = document.getElementById("tablePromoDiv");
+    const promoForm = document.getElementById('promoForm')
     const inputPromoNom = document.getElementById("promoNom");
     const inputDateDebut = document.getElementById("dateDebut");
     const inputDateFin = document.getElementById("dateFin");
@@ -69,55 +100,11 @@ document
         tablePromoDiv.innerHTML = result;
         ajouterPromoDiv.classList.add("d-none");
         appendNewScripts();
+
+        inputPromoNomValue = "";
+        inputDateDebutValue = "";
+        inputPlaceDispoValue = "";
+        inputDateFinValue = "";
+        promoForm.reset();
       });
   });
-
-
-  
-
-  function attachEventListeners() {
-    let boutonsVoirPromo = document.querySelectorAll(".voir-btn");
-    boutonsVoirPromo.forEach(function (boutonVoirThisPromo) {
-      boutonVoirThisPromo.addEventListener("click", function() {
-        let idDePromoAVoir = this.getAttribute("data-promo-id");
-        voirThisPromo(idDePromoAVoir);
-      });
-    });
-  }
-
-
-
-
-function voirThisPromo(idDePromoAVoir) {
-
-    const bodyDashboard = document.getElementById("bodyDashboard");
- 
-  const url = "/displayThisPromo";
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ idDePromoAVoir: idDePromoAVoir }),
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.text();
-  })
-  .then((data) => {
-    bodyDashboard.innerHTML = "";
-    bodyDashboard.innerHTML = data;
-    appendNewScriptsUtilisateur()
-    attachEventListeners();
-  })
-  .catch(error => {
-    console.error('There has been a problem with your fetch operation:', error);
-  });
-}
-
-attachEventListeners();
-
-
-

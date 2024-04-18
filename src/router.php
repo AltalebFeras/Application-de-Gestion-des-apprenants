@@ -48,7 +48,10 @@ switch ($route) {
     }
     break;
 
-
+    case HOME_URL . 'deletePromotion':
+      $PromoController->deleteThisPromo();
+  
+      break;
 
   case HOME_URL . 'displayThisPromo':
     $HomeController->displayThisPromo();

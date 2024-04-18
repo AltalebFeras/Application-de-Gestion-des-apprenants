@@ -1,22 +1,20 @@
 <?php
+include_once __DIR__ . '/Includes/header.php';
 include_once __DIR__ . '/../Services/callRepo.php';
 
 
-include_once __DIR__ . '/Includes/header.php';
+?>
+<?php
 
+
+include_once __DIR__ . '/../Views/components/navbar.php';
 
 ?>
-  <?php
-
-
-  include_once __DIR__ . '/../Views/components/navbar.php';
-  
-  ?>
-  <div class="m-2" id="bodyDashboard">
+<div class="m-2" id="bodyDashboard">
 
   <?php
   if (isset($_SESSION['role'])) {
-    if ($_SESSION['role'] == 'admin') {
+    if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'formateur'|| $_SESSION['role'] == 'apprenant') {
       echo "<h2 class= m-2 >Bonjour Admin!</h2>";
       var_dump($_SESSION['role'])
 
@@ -30,9 +28,14 @@ include_once __DIR__ . '/Includes/header.php';
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Accueil</button>
         </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Promotions</button>
-        </li>
+
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'apprenant') : ?>
+
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Promotions</button>
+          </li>
+        <?php endif; ?>
 
       </ul>
       <div class="tab-content" id="myTabContent">
@@ -68,6 +71,10 @@ include_once __DIR__ . '/Includes/header.php';
       <div id="main">
         <script src="assets/scripts/dashboard.js" type="module"></script>
         <script src="assets/scripts/createPromo.js" type="module"></script>
+        <script src="assets/scripts/deletePromo.js" type="module"></script>
+        <script src="assets/scripts/displayThisForm.js" type="module"></script>
+
+
       </div>
 </div>
 
@@ -80,9 +87,7 @@ include_once __DIR__ . '/Includes/header.php';
 
 
 <?php
-    } elseif ($_SESSION['role'] == 'user') {
-      echo "<h2>Bonjour " . $_SESSION['prenom'] . "!</h2>";
-    }
+    } 
   }
 ?>
 
@@ -91,5 +96,4 @@ include_once __DIR__ . '/Includes/header.php';
 
 <?php
 include_once __DIR__ . '/Includes/footer.php';
-
 ?>

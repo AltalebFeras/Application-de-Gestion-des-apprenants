@@ -33,20 +33,20 @@ class HomeController
           $_SESSION['role'] = 'admin';
 
           include_once __DIR__ . '/../Views/dashboard.php';
-        // echo json_encode(array("success" => true));
+          // echo json_encode(array("success" => true));
+          exit();
+        } else {
+          echo json_encode(array("success" => false, "error" => "Incorrect email or password."));
+          exit();
+        }
+      } else {
+        echo json_encode(array("success" => false, "error" => "Invalid request data."));
         exit();
+      }
     } else {
-        echo json_encode(array("success" => false, "error" => "Incorrect email or password."));
-        exit();
+      echo json_encode(array("success" => false, "error" => "Empty request data."));
+      exit();
     }
-} else {
-    echo json_encode(array("success" => false, "error" => "Invalid request data."));
-    exit();
-}
-} else {
-echo json_encode(array("success" => false, "error" => "Empty request data."));
-exit();
-}
   }
 
   public function displayFormAjouterPromotion()
@@ -56,6 +56,8 @@ exit();
 
   public function displayDashboard()
   {
+    include_once __DIR__ . '/../Services/callRepo.php';
+
     include_once __DIR__ . '/../Views/dashboard.php';
   }
 
@@ -64,9 +66,8 @@ exit();
 
     $promoRepository = new PromoRepository();
     $promoDetails = $promoRepository->getThisPromo();
-    
-    include_once __DIR__ . '/../Views/displayThisPromo.php';
 
+    include_once __DIR__ . '/../Views/displayThisPromo.php';
   }
 
   public function displayFormAjouterApprenant()

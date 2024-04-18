@@ -12,20 +12,47 @@ function appendNewScriptsUtilisateur() {
     }
   }
 }
-
-document.getElementById("displayThisPromoBtn").addEventListener("click", () => {
-    const bodyDashboard = document.getElementById("bodyDashboard");
-  
-    fetch("/displayThisPromo")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.text();
-      })
-      .then((data) => {
-        bodyDashboard.innerHTML = "";
-        bodyDashboard.innerHTML = data;
-        appendNewScriptsUtilisateur()
-      });
+function attachEventListenersBtnVoir() {
+  let boutonsVoirPromo = document.querySelectorAll(".table-promo-btn-voir");
+  boutonsVoirPromo.forEach(function (boutonVoirThisPromo) {
+    boutonVoirThisPromo.addEventListener("click", function () {
+      let idThisPromo = this.getAttribute("data-promo-id");
+      voirThisPromo(idThisPromo);
+    });
   });
+}
+
+
+function voirThisPromo(idThisPromo) {
+  const bodyDashboard = document.getElementById("bodyDashboard");
+
+  const url = "/displayThisPromo";
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ idThisPromo: idThisPromo }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.text();
+    })
+    .then((data) => {
+      bodyDashboard.innerHTML = "";
+      bodyDashboard.innerHTML = data;
+      appendNewScriptsUtilisateur();
+      attachEventListenersBtnVoir();
+    })
+    .catch((error) => {
+      console.error(
+        "There has been a problem with your fetch operation:",
+        error
+      );
+    });
+}
+
+
+attachEventListenersBtnVoir();

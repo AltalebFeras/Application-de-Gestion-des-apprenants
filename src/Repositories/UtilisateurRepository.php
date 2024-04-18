@@ -29,8 +29,8 @@ class UtilisateurRepository
         $Email = isset($data['Email']) ? htmlspecialchars($data['Email']) : null;
     
         $Compte_Active = isset($data['Compte_Active']) ? $data['Compte_Active'] : 'NON';
-        $ID_Role = isset($data['ID_Role']) ? $data['ID_Role'] : 1;
-    
+        $ID_Role = isset($data['ID_Role']) ? $data['ID_Role'] : null;
+
         $database = new Database();
     
         $query = $database->getDB()->prepare('

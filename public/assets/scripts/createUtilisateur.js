@@ -13,15 +13,55 @@ function reappendScript() {
   }
 }
 
+function validateForm() {
+  var nom = document.getElementById("Nom").value;
+  var prenom = document.getElementById("Prenom").value;
+  var email = document.getElementById("Email").value;
+
+  var nomError = document.getElementById("nomError");
+  var prenomError = document.getElementById("prenomError");
+  var emailError = document.getElementById("emailError");
+
+  nomError.textContent = "";
+  prenomError.textContent = "";
+  emailError.textContent = "";
+
+  var isValid = true;
+
+  if (nom === "") {
+    nomError.textContent = "Veuillez saisir un nom.";
+    isValid = false;
+  }
+
+  if (prenom === "") {
+    prenomError.textContent = "Veuillez saisir un prénom.";
+    isValid = false;
+  }
+
+  if (email === "") {
+    emailError.textContent = "Veuillez saisir un adresse email.";
+    isValid = false;
+  }
+
+  return isValid;
+}
+
 document
   .getElementById("createNewUtilisateurBtn")
   .addEventListener("click", (event) => {
     event.preventDefault();
 
-    const contentUtilisateurDiv = document.getElementById("contentUtilisateurDiv");
+    if (!validateForm()) {
+      return;
+    }
+
+    const contentUtilisateurDiv = document.getElementById(
+      "contentUtilisateurDiv"
+    );
     const inputNom = document.getElementById("Nom");
     const inputPrenom = document.getElementById("Prenom");
     const inputEmail = document.getElementById("Email");
+    const inputRole = document.getElementById("ID_Role");
 
     let contentPromotion = document.getElementById("contentPromotion");
     let ajouterApprenantDiv = document.getElementById("ajouterApprenantDiv");
@@ -29,6 +69,7 @@ document
     const inputNomValue = inputNom.value;
     const inputPrenomtValue = inputPrenom.value;
     const inputEmailValue = inputEmail.value;
+    const inputRoleValue = inputRole.value;
 
     const url = "/ajouterApprenant";
 
@@ -36,6 +77,7 @@ document
       Nom: inputNomValue,
       Prenom: inputPrenomtValue,
       Email: inputEmailValue,
+      ID_Role: inputRoleValue,
     };
 
     fetch(url, {
@@ -54,5 +96,7 @@ document
         contentUtilisateurDiv.innerHTML = result;
         ajouterApprenantDiv.classList.remove("d-none");
         reappendScript();
+
+       
       });
   });
