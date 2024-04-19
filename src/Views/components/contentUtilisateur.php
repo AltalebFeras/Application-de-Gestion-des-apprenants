@@ -6,12 +6,12 @@
         <div class="card-body">
             <h5 class="card-title d-flex justify-content-start">Cours du jour</h5>
             <div class="card-text mb-3 bg-light">
-                <p class="card-text d-flex justify-content-start"> <?php 
+                <p class="card-text d-flex justify-content-start"> <?php
 
-echo $promoDetails['Nom'];
-var_dump($promoDetails);
+                                                                    echo $promoDetails['Nom'];
+                                                                    var_dump($promoDetails);
 
-?> - matin</p>
+                                                                    ?> - matin</p>
                 <p class="card-text d-flex justify-content-end"><?php echo date('d-m-Y'); ?></p>
 
                 <div class="d-flex justify-content-end">
@@ -20,11 +20,11 @@ var_dump($promoDetails);
                 </div>
             </div>
             <div class="card-text mb-3 bg-light">
-                <p class="card-text d-flex justify-content-start"><?php 
+                <p class="card-text d-flex justify-content-start"><?php
 
-echo $promoDetails['Nom'];
+                                                                    echo $promoDetails['Nom'];
 
-?> - après midi</p>
+                                                                    ?> - après midi</p>
                 <p class="card-text d-flex justify-content-end"><?php echo date('d-m-Y'); ?></p>
                 <div class="d-flex justify-content-end">
                     <!-- <span class="badge text-bg-warning ">ajouter les cas</span> -->
@@ -41,16 +41,16 @@ echo $promoDetails['Nom'];
 
             <div class="d-flex justify-content-between my-3 mx-2">
                 <div>
-                    <h3 class="m-3">Promotion <?php 
+                    <h3 class="m-3">Promotion <?php
 
-echo $promoDetails['Nom'];
+                                                echo $promoDetails['Nom'];
 
-?></h3>
-                    <p class="m-3">informations générales de la <?php 
+                                                ?></h3>
+                    <p class="m-3">informations générales de la <?php
 
-echo $promoDetails['Nom'];
+                                                                echo $promoDetails['Nom'];
 
-?></p>
+                                                                ?></p>
 
                 </div>
 
@@ -77,7 +77,7 @@ echo $promoDetails['Nom'];
 
                     <div id="tableUserDiv">
 
-                        
+
                         <?php
                         include_once __DIR__ . '/tableUser.php';
                         ?>
@@ -92,50 +92,17 @@ echo $promoDetails['Nom'];
 
 
 
-                    <div class="d-flex justify-content-between my-3 mx-2">
-                        <div></div>
-                        <button id="ajouterRetardBtn" class="btn btn-success">Ajouter un retard</button>
+                    <div id="tableUserRetardDiv">
+
+
+                        <?php
+                        include_once __DIR__ . '/tableRetad.php';
+                        ?>
+
+
                     </div>
 
-
-
-
-
-
-
-                    <table class="table  my-3 mx-2">
-                        <thead>
-                            <tr>
-                                <th class="d-non" scope="col">ID Utilisateur</th>
-                                <th scope="col">Nom de famille</th>
-                                <th scope="col">Prénom</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Compte activé</th>
-                                <th scope="col">Rôle</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($utilisateurs as $utilisateur) : ?>
-                                <tr>
-                                    <td class="d-non"><?php echo $utilisateur->getIDUtilisateur(); ?></td>
-                                    <td><?php echo $utilisateur->getNom(); ?></td>
-                                    <td><?php echo $utilisateur->getPrenom() ?></td>
-                                    <td><?php echo $utilisateur->getEmail(); ?></td>
-                                    <td><?php echo $utilisateur->getCompteActive(); ?></td>
-                                    <td><?php if ($utilisateur->getIDRole() == 1) {
-                                            echo "apprenant";
-                                        } ?></td>
-
-                                    <td>
-                                        <button type="button" class="btn btn-link">Editer</button>
-                                        <button type="button" class="btn btn-link">Supprimer</button>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-
+                  
 
                 </div>
             </div>

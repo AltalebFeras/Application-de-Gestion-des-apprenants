@@ -87,5 +87,28 @@ class UtilisateurController
             }
         }
     }
+
+
+   public function  deleteThisUser(){
+    $request = file_get_contents('php://input');
+
+    if ($request) {
+      $decodedRequest = json_decode($request);
+
+      if ($decodedRequest) {
+        $idThisUser = htmlspecialchars($decodedRequest->idThisUser);
+
+        $utilisateurRepository = new UtilisateurRepository();
+        $utilisateurRepository->deleteUser($idThisUser);
+        $utilisateurs = $utilisateurRepository->getAllUtilisateurs();
+        include_once __DIR__ . '/../Views/components/tableUser.php';
+
+
+      }
+    } else {
+      echo "Invalid request";
+    }
+
+   }
     
 }

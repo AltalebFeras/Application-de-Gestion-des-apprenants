@@ -1,4 +1,4 @@
-<div  class="card-body">
+<div class="card-body">
     <div class="d-flex justify-content-between my-3 mx-2">
         <div></div>
         <button id="ajouterApprenantBtn" class="btn btn-success">Ajouter apprenant</button>
@@ -25,11 +25,17 @@
                     <td><?php echo $utilisateur->getPrenom() ?></td>
                     <td><?php echo $utilisateur->getEmail(); ?></td>
                     <td><?php echo $utilisateur->getCompteActive(); ?></td>
-                    <td><?php if ($utilisateur->getIDRole() == 1) {echo "apprenant";} elseif ($utilisateur->getIDRole() == 2) {echo "Formateur";} elseif($utilisateur->getIDRole() == 3) {echo "Admin";}?></td>
+                    <td><?php if ($utilisateur->getIDRole() == 1) {
+                            echo "apprenant";
+                        } elseif ($utilisateur->getIDRole() == 2) {
+                            echo "Formateur";
+                        } elseif ($utilisateur->getIDRole() == 3) {
+                            echo "Admin";
+                        } ?></td>
 
                     <td>
-                        <button type="button" class="btn btn-link">Editer</button>
-                        <button type="button" class="btn btn-link">Supprimer</button>
+                        <button type="button" data-user-id="<?php echo $utilisateur->getIDUtilisateur(); ?>" class="table-user-btn-edit btn btn-link">Editer</button>
+                        <button type="button" data-user-id="<?php echo $utilisateur->getIDUtilisateur(); ?>" class="table-user-btn-delete btn btn-link">Supprimer</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -51,9 +57,11 @@
         <script src="assets/scripts/generateCode.js" type="module"></script>
         <script src="assets/scripts/retard.js" type="module"></script>
         <script src="assets/scripts/editUsers.js" type="module"></script>
+        <script src="assets/scripts/deleteUser.js" type="module"></script>
+
+        <!-- <script src="assets/scripts/createUtilisateur.js" type="module"></script> -->
 
 
 
     </div>
 </div>
-

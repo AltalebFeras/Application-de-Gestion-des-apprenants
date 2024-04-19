@@ -76,5 +76,17 @@ class UtilisateurRepository
             return [];
         }
     }
-}
+
+    public function deleteUser($idThisUser){
+        $database = new Database();
+
+        $query = $database->getDB()->prepare('
+            DELETE FROM ' . PREFIXE . 'utilisateurs WHERE ID_Utilisateur = :ID_Utilisateur
+        ');
+    
+        $query->execute(['ID_Utilisateur' => $idThisUser]);
+    }
+    
+    }
+
 
