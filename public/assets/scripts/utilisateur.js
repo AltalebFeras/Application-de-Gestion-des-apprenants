@@ -1,18 +1,18 @@
 
 
 document.getElementById("ajouterApprenantBtn").addEventListener("click", () => {
-  let contentPromotion = document.getElementById("contentPromotion");
+  let tableUserDiv = document.getElementById("tableUserDiv");
   let ajouterApprenantDiv = document.getElementById("ajouterApprenantDiv");
-  contentPromotion.classList.add("d-none");
+  tableUserDiv.classList.add("d-none");
   ajouterApprenantDiv.classList.remove("d-none");
 });
 
 document
   .getElementById("btnRetourVersTousLesPromoDeApprenant")
   .addEventListener("click", () => {
-    let contentPromotion = document.getElementById("contentPromotion");
+    let tableUserDiv = document.getElementById("tableUserDiv");
     let ajouterApprenantDiv = document.getElementById("ajouterApprenantDiv");
-    contentPromotion.classList.remove("d-none");
+    tableUserDiv.classList.remove("d-none");
     ajouterApprenantDiv.classList.add("d-none");
   });
 

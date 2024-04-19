@@ -36,13 +36,13 @@ if (isset($_SESSION['role'])) {
 
 
 
-            <div id="mainUtilisateurScripts">
+            <div id="mainUtilisateurScripts1">
 
-                <script src="assets/scripts/utilisateur.js" type="module"></script>
+                <!-- <script src="assets/scripts/utilisateur.js" type="module"></script>
                 <script src="assets/scripts/promo.js" type="module"></script>
                 <script src="assets/scripts/generateCode.js" type="module"></script>
                 <script src="assets/scripts/retard.js" type="module"></script>
-                <script src="assets/scripts/editUsers.js" type="module"></script>
+                <script src="assets/scripts/editUsers.js" type="module"></script> -->
                 <script src="assets/scripts/createUtilisateur.js" type="module"></script>
 
 

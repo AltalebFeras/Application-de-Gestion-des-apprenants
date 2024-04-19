@@ -77,7 +77,7 @@ echo $promoDetails['Nom'];
 
                     <div id="tableUserDiv">
 
-
+                        
                         <?php
                         include_once __DIR__ . '/tableUser.php';
                         ?>

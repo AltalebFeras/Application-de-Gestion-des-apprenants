@@ -1,4 +1,7 @@
+<?php
+include_once __DIR__ . '/Includes/header.php';
 
+?>
 
 <div class="container bg-light p-4  col-md-5 mt-5 shadow-lg p-3 mb-5">
   <form id="form" class="d-flex flex-column mb-3" method="post">

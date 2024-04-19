@@ -75,14 +75,14 @@ class UtilisateurController
                     
                     // Send the email
                     $mail->send();
-                    echo 'Email has been sent';
                 } catch (Exception $e) {
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }
     
             $utilisateurs = $UtilisateurRepository->getAllUtilisateurs(); 
 
-            include_once __DIR__ . '/../Views/components/contentUtilisateur.php';
+            include_once __DIR__ . '/../Views/components/tableUser.php';
+
 
             }
         }

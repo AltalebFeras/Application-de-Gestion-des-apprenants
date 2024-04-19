@@ -1,4 +1,4 @@
-<div class="card-body">
+<div  class="card-body">
     <div class="d-flex justify-content-between my-3 mx-2">
         <div></div>
         <button id="ajouterApprenantBtn" class="btn btn-success">Ajouter apprenant</button>
@@ -51,7 +51,6 @@
         <script src="assets/scripts/generateCode.js" type="module"></script>
         <script src="assets/scripts/retard.js" type="module"></script>
         <script src="assets/scripts/editUsers.js" type="module"></script>
-        <script src="assets/scripts/createUtilisateur.js" type="module"></script>
 
 
 

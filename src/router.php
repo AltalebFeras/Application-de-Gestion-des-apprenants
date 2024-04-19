@@ -52,6 +52,10 @@ switch ($route) {
       $PromoController->deleteThisPromo();
   
       break;
+      case HOME_URL . 'validationCompte':
+        $HomeController->validationCompte();
+    
+        break;
 
   case HOME_URL . 'displayThisPromo':
     $HomeController->displayThisPromo();

@@ -55,15 +55,14 @@ document
       return;
     }
 
-    const contentUtilisateurDiv = document.getElementById(
-      "contentUtilisateurDiv"
+    const tableUserDiv = document.getElementById(
+      "tableUserDiv"
     );
     const inputNom = document.getElementById("Nom");
     const inputPrenom = document.getElementById("Prenom");
     const inputEmail = document.getElementById("Email");
     const inputRole = document.getElementById("ID_Role");
 
-    let contentPromotion = document.getElementById("contentPromotion");
     let ajouterApprenantDiv = document.getElementById("ajouterApprenantDiv");
 
     const inputNomValue = inputNom.value;
@@ -91,10 +90,10 @@ document
         return response.text();
       })
       .then((result) => {
-        contentPromotion.classList.add("d-none");
-        contentUtilisateurDiv.innerHTML = "";
-        contentUtilisateurDiv.innerHTML = result;
-        ajouterApprenantDiv.classList.remove("d-none");
+        ajouterApprenantDiv.classList.add("d-none");
+        tableUserDiv.classList.remove("d-none");
+        tableUserDiv.innerHTML = "";
+        tableUserDiv.innerHTML = result;
         reappendScript();
 
        

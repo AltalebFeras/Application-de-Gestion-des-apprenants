@@ -80,6 +80,13 @@ class HomeController
 
     include_once __DIR__ . '/../Views/components/promotions.php';
   }
+
+  public function validationCompte()
+  {
+
+    include_once __DIR__ . '/../Views/validationCompte.php';
+  }
+
   public function quit()
   {
     session_destroy();
