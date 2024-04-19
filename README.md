@@ -1,4 +1,6 @@
 # Application-de-Gestion-des-apprenants
+# Pensez à modifier le fichier config.example.php et puis modifier le nom du fichier comme "config.php" 
+
 
 code table users 
 
