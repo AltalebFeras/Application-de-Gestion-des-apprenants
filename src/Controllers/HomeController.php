@@ -7,11 +7,9 @@ use src\Repositories\PromoRepository;
 class HomeController
 {
 
-  // use Reponse;
 
   public function index(): void
   {
-    // $this->render("connexion", ["erreur" => ""]);
     include_once __DIR__ . '/../Views/connexion.php';
   }
 

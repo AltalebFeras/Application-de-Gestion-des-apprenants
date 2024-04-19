@@ -87,6 +87,53 @@ class UtilisateurRepository
         $query->execute(['ID_Utilisateur' => $idThisUser]);
     }
     
+    public function getUserByHashedEmail($Email)
+    {
+        try {
+            $query = $this->DB->prepare('SELECT * FROM ' . PREFIXE . 'utilisateurs WHERE Email = :Email');
+            $query->execute(['Email' => $Email]);
+            $user = $query->fetch(PDO::FETCH_ASSOC);
+    
+            if ($user) {
+                return $user; // Return the user data directly
+            }
+    
+            return null;
+        } catch (PDOException $e) {
+            return null;
+        }
+    }
+    
+    public function updateUserPassword($Email, $hashedPassword)
+    {
+        try {
+            $user = $this->getUserByHashedEmail($Email);
+    
+            if ($user) {
+                $userID = $user['ID_Utilisateur']; 
+    
+                $query = $this->DB->prepare('UPDATE ' . PREFIXE . 'utilisateurs SET Mot_De_Passe = :Mot_De_Passe WHERE ID_Utilisateur = :ID_Utilisateur');
+                $query->execute([
+                    'ID_Utilisateur' => $userID, 
+                    'Mot_De_Passe' => $hashedPassword
+                ]);
+    
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+    
+
+    
+
+ 
+
+
+
     }
 
 

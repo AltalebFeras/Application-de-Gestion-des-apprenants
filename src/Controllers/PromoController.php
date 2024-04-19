@@ -3,7 +3,6 @@
 namespace src\Controllers;
 
 use src\Repositories\PromoRepository;
-use src\Services\Reponse;
 
 class PromoController
 {

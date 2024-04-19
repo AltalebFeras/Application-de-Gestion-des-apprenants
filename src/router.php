@@ -22,18 +22,17 @@ switch ($route) {
     }
     break;
 
-  case HOME_URL . 'dashboard':
-    {
+  case HOME_URL . 'dashboard': {
       $HomeController->displayDashboard();
     }
 
     break;
 
 
-    case HOME_URL . 'promotions':
-      $HomeController->displayAllPromotions();
-  
-      break;
+  case HOME_URL . 'promotions':
+    $HomeController->displayAllPromotions();
+
+    break;
 
   case HOME_URL . 'ajouterPromotion':
 
@@ -41,27 +40,32 @@ switch ($route) {
       $PromoController->createPromo();
     } elseif ($methode == 'GET') {
       $HomeController->displayFormAjouterPromotion();
-    }
-    else{
+    } else {
       $HomeController->displayFormAjouterPromotion();
-
     }
     break;
 
-    case HOME_URL . 'deletePromotion':
-      $PromoController->deleteThisPromo();
-  
-      break;
+  case HOME_URL . 'deletePromotion':
+    $PromoController->deleteThisPromo();
 
-      case HOME_URL . 'deleteUser':
-        $UtilisateurController->deleteThisUser();
-    
-        break;
+    break;
 
-      case HOME_URL . 'validationCompte':
-        $HomeController->validationCompte();
-    
-        break;
+  case HOME_URL . 'deleteUser':
+    $UtilisateurController->deleteThisUser();
+
+    break;
+
+  case HOME_URL . 'validationCompteGET':
+
+    if ($methode == 'POST') {
+      $UtilisateurController->createUserPassword();
+    } else {
+
+      $HomeController->validationCompte();
+    }
+
+
+    break;
 
   case HOME_URL . 'displayThisPromo':
     $HomeController->displayThisPromo();
@@ -69,14 +73,14 @@ switch ($route) {
     break;
 
 
-    case HOME_URL . 'ajouterApprenant':
+  case HOME_URL . 'ajouterApprenant':
 
-      if ($methode == 'POST') {
-        $UtilisateurController->treatmentCreateNewUser();
-      } elseif ($methode == 'GET') {
-        $HomeController->displayFormAjouterApprenant();
-      }
-      break;
+    if ($methode == 'POST') {
+      $UtilisateurController->treatmentCreateNewUser();
+    } elseif ($methode == 'GET') {
+      $HomeController->displayFormAjouterApprenant();
+    }
+    break;
 
 
   case HOME_URL . 'deconnexion':
