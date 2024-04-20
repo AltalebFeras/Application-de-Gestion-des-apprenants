@@ -26,7 +26,8 @@ class UtilisateurController
                     'Nom' => htmlspecialchars($decodedRequest->Nom),
                     'Prenom' => htmlspecialchars($decodedRequest->Prenom),
                     'Email' => htmlspecialchars($decodedRequest->Email),
-                    'ID_Role' => htmlspecialchars($decodedRequest->ID_Role)
+                    'ID_Role' => htmlspecialchars($decodedRequest->ID_Role),
+                    'ID_Promo' => htmlspecialchars($decodedRequest->ID_Promo)
                 ];
 
                 // Hash the email address using SHA-256
@@ -81,7 +82,8 @@ class UtilisateurController
                 }
 
                 $utilisateurs = $UtilisateurRepository->getAllUtilisateurs();
-
+                
+                
                 include_once __DIR__ . '/../Views/components/tableUser.php';
             }
         }
@@ -101,6 +103,7 @@ class UtilisateurController
                 $utilisateurRepository = new UtilisateurRepository();
                 $utilisateurRepository->deleteUser($idThisUser);
                 $utilisateurs = $utilisateurRepository->getAllUtilisateurs();
+
                 include_once __DIR__ . '/../Views/components/tableUser.php';
             }
         } else {

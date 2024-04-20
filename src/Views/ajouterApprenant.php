@@ -8,10 +8,11 @@
 </style>
 
 
+ 
 <form  id="userForm" class="p-3 m-5 bg-light text-dark" method="post"  >
 
-    <input type="hidden" name="form_id" value="2">
-
+    <input type="hidden" id="ID_Promo"  name="ID_Promo" value="<?php echo $promoDetails['ID_Promo']; ?>">
+    
     <div class="mb-3">
         <label for="Nom" class="form-label">Nom</label>
         <input type="text" name="Nom" class="form-control" id="Nom" required >

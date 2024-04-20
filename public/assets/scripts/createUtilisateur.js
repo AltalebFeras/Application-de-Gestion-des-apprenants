@@ -14,19 +14,19 @@ function reappendScript() {
 }
 
 function validateForm() {
-  var nom = document.getElementById("Nom").value;
-  var prenom = document.getElementById("Prenom").value;
-  var email = document.getElementById("Email").value;
+  let nom = document.getElementById("Nom").value;
+  let prenom = document.getElementById("Prenom").value;
+  let email = document.getElementById("Email").value;
 
-  var nomError = document.getElementById("nomError");
-  var prenomError = document.getElementById("prenomError");
-  var emailError = document.getElementById("emailError");
+  let nomError = document.getElementById("nomError");
+  let prenomError = document.getElementById("prenomError");
+  let emailError = document.getElementById("emailError");
 
   nomError.textContent = "";
   prenomError.textContent = "";
   emailError.textContent = "";
 
-  var isValid = true;
+  let isValid = true;
 
   if (nom === "") {
     nomError.textContent = "Veuillez saisir un nom.";
@@ -55,13 +55,12 @@ document
       return;
     }
 
-    const tableUserDiv = document.getElementById(
-      "tableUserDiv"
-    );
+    const tableUserDiv = document.getElementById("tableUserDiv");
     const inputNom = document.getElementById("Nom");
     const inputPrenom = document.getElementById("Prenom");
     const inputEmail = document.getElementById("Email");
     const inputRole = document.getElementById("ID_Role");
+    const ID_Promo = document.getElementById("ID_Promo");
 
     let ajouterApprenantDiv = document.getElementById("ajouterApprenantDiv");
 
@@ -69,6 +68,7 @@ document
     const inputPrenomtValue = inputPrenom.value;
     const inputEmailValue = inputEmail.value;
     const inputRoleValue = inputRole.value;
+    const ID_PromoValue = ID_Promo.value;
 
     const url = "/ajouterApprenant";
 
@@ -77,6 +77,7 @@ document
       Prenom: inputPrenomtValue,
       Email: inputEmailValue,
       ID_Role: inputRoleValue,
+      ID_Promo : ID_PromoValue
     };
 
     fetch(url, {
@@ -95,7 +96,5 @@ document
         tableUserDiv.innerHTML = "";
         tableUserDiv.innerHTML = result;
         reappendScript();
-
-       
       });
   });

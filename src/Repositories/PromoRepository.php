@@ -73,7 +73,8 @@ class PromoRepository
     
         if ($requestPayload && isset($requestPayload->idThisPromo)) {
             $idThisPromo = htmlspecialchars($requestPayload->idThisPromo);
-    
+
+               
             $query = $this->DB->prepare('SELECT * FROM '. PREFIXE .'Promos WHERE ID_Promo = :idThisPromo');
     
             $query->bindParam(':idThisPromo', $idThisPromo, PDO::PARAM_INT);
@@ -89,9 +90,11 @@ class PromoRepository
                 $promoData['Date_Fin'] = $promo['Date_Fin'];
                 $promoData['Place_Dispo'] = $promo['Place_Dispo'];
             }
+            $_SESSION['ID_Promo'] = $idThisPromo;
         }
     
         return $promoData;
+
     }
   
 

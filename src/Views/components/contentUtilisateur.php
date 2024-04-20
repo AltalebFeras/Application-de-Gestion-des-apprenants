@@ -10,6 +10,7 @@
 
                                                                     echo $promoDetails['Nom'];
                                                                     var_dump($promoDetails);
+                                                                    // var_dump($_SESSION['ID_Promo']);
 
                                                                     ?> - matin</p>
                 <p class="card-text d-flex justify-content-end"><?php echo date('d-m-Y'); ?></p>
