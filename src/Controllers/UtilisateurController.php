@@ -133,7 +133,7 @@ class UtilisateurController
 
                     $utilisateurRepository->updateUserPassword($Email, $hashedPassword);
 
-                    include_once __DIR__ . '/../Views/connexion.php';
+                    include_once __DIR__ . '/../Views/validationCompte.php ';
 
 
                     echo "Password updated successfully. Your account is now active.";

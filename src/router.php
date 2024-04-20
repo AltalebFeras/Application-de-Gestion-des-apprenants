@@ -60,11 +60,8 @@ switch ($route) {
     if ($methode == 'POST') {
       $UtilisateurController->createUserPassword();
     } else {
-
       $HomeController->validationCompte();
     }
-
-
     break;
 
   case HOME_URL . 'displayThisPromo':

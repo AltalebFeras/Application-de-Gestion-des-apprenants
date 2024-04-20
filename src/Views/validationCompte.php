@@ -1,8 +1,11 @@
 <?php
-include_once __DIR__ . '/Includes/header.php';
-include_once __DIR__ . '/components/navbar.php';
+include_once __DIR__ . '/Includes/headerPageValidationCompte.php';
 
 ?>
+
+
+
+
 <style>
   .error {
     color: red;
@@ -29,4 +32,7 @@ include_once __DIR__ . '/components/navbar.php';
     </div>
     <button type="submit" id="btnConfirmPassword" class="btn btn-primary">Connexion</button>
   </form>
+</div>
+<div id="scriptsValidation">
+  <script src="assets/scripts/validationCompte.js" type="module"></script>
 </div>

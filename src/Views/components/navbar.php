@@ -8,7 +8,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a class="navbar-brand" href="#">SIMPLON</a>
+          <a class="navbar-brand" href="">SIMPLON</a>
         </div>
         <button type="button" id="deconnexionBtn" class="btn btn-light" >Déconnexion</button>
 
@@ -22,7 +22,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a class="navbar-brand" href="#">SIMPLON</a>
+          <a class="navbar-brand" href="">SIMPLON</a>
         </div>
         <button type="button" id="connexionBtn" class="btn btn-light" >Connexion</button>
 
