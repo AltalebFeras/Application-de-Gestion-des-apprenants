@@ -1,38 +1,73 @@
+
+
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
 
 
-        <div class="card-body">
-            <h5 class="card-title d-flex justify-content-start">Cours du jour</h5>
-            <div class="card-text mb-3 bg-light">
-                <p class="card-text d-flex justify-content-start"> <?php
+        <h5 class="card-title d-flex justify-content-start">Cours du jour</h5>
+        <div class="card-body m-3 mx-2">
+            <!-- a modifier display none  d-none -->
 
-                                                                    echo $promoDetails['Nom'];
-                                                                    var_dump($promoDetails);
-                                                                    // var_dump($_SESSION['ID_Promo']);
+            <div class="card-text mb-4 mx-2 bg-light ">
+                <div class=" mx-2 card-text d-flex justify-content-between">
+                    <div>
+                        <h3 class=" mx-2 my-1 card-text d-flex justify-content-start"><?php
+                                                                                        var_dump($promoDetails);
+                                                                                        echo $promo->getNom(); ?>- matin</h3>
+                        <p class="card-text d-flex justify-content-start mx-2"><?php echo $promo->getPlaceDispo(); ?> participants</p>
 
-                                                                    ?> - matin</p>
-                <p class="card-text d-flex justify-content-end"><?php echo date('d-m-Y'); ?></p>
+                    </div>
+                    <div class="mx-2">
+                        <p class="card-text d-flex justify-content-end my-2 mx-2 font-weight-bold"><?php echo date('d-m-Y'); ?></p>
 
-                <div class="d-flex justify-content-end">
-                    <!-- <span class="badge text-bg-success ">ajouter les cas</span> -->
-                    <button id="" class="btn btn-info">Valider présence</button>
+                    </div>
+                </div>
+
+                <div class="mx-2 ">
+
+
+                    <div class="d-flex flex-row-reverse">
+                        <button id="matinValiderLeCodeFormateur" type="button" class="my-3 mx-2 d-flex justify-content-end btn btn-primary">Valider présence</button>
+                    </div>
+
+
                 </div>
             </div>
-            <div class="card-text mb-3 bg-light">
-                <p class="card-text d-flex justify-content-start"><?php
 
-                                                                    echo $promoDetails['Nom'];
+            <div class="card-text mb-3 mx-2 bg-light ">
+                <div class=" mx-2 card-text d-flex justify-content-between">
+                    <div>
+                        <h3 class=" mx-2 my-1 card-text d-flex justify-content-start"><?php echo $promo->getNom(); ?>- après midi</h3>
+                        <p class="card-text d-flex justify-content-start mx-2"><?php echo $promo->getPlaceDispo(); ?> participants</p>
 
-                                                                    ?> - après midi</p>
-                <p class="card-text d-flex justify-content-end"><?php echo date('d-m-Y'); ?></p>
-                <div class="d-flex justify-content-end">
-                    <!-- <span class="badge text-bg-warning ">ajouter les cas</span> -->
-                    <button id="" class="btn btn-success">Signatures recueillies</button>
+                    </div>
+                    <div class="mx-2">
+                        <p class="card-text d-flex justify-content-end my-2 mx-2 font-weight-bold"><?php echo date('d-m-Y'); ?></p>
+
+                    </div>
+                </div>
+
+                <div class="mx-2 ">
+
+
+
+                    <div class="d-flex flex-row-reverse">
+                        <button id="apresMidiValiderLeCodeFormateur" type="submit" class="my-3 mx-2 d-flex justify-content-end btn btn-primary">Valider présence</button>
+                    </div>
+
+
                 </div>
             </div>
+
+
+
+
         </div>
+
+
+
+
 
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -103,7 +138,7 @@
 
                     </div>
 
-                  
+
 
                 </div>
             </div>
