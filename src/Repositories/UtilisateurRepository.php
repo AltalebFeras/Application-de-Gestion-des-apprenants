@@ -28,7 +28,7 @@ class UtilisateurRepository
         $Prenom = isset($data['Prenom']) ? htmlspecialchars($data['Prenom']) : null;
         $Email = isset($data['Email']) ? htmlspecialchars($data['Email']) : null;
     
-        $Compte_Active = isset($data['Compte_Active']) ? $data['Compte_Active'] : 'NON';
+        $Compte_Active = isset($data['Compte_Active']) ? $data['Compte_Active'] : 'Non';
         $ID_Role = isset($data['ID_Role']) ? $data['ID_Role'] : null;
 
         $database = new Database();
@@ -112,11 +112,13 @@ class UtilisateurRepository
             if ($user) {
                 $userID = $user['ID_Utilisateur']; 
     
-                $query = $this->DB->prepare('UPDATE ' . PREFIXE . 'utilisateurs SET Mot_De_Passe = :Mot_De_Passe WHERE ID_Utilisateur = :ID_Utilisateur');
+                $query = $this->DB->prepare('UPDATE ' . PREFIXE . 'utilisateurs SET Mot_De_Passe = :Mot_De_Passe, Compte_Active = :Compte_Active WHERE ID_Utilisateur = :ID_Utilisateur');
                 $query->execute([
                     'ID_Utilisateur' => $userID, 
-                    'Mot_De_Passe' => $hashedPassword
+                    'Mot_De_Passe' => $hashedPassword,
+                    'Compte_Active' => 'Oui' 
                 ]);
+                
     
                 return true;
             } else {
