@@ -16,7 +16,8 @@ switch ($route) {
   case HOME_URL:
 
     if ($methode == 'POST') {
-      $HomeController->authAdmin();
+      // $HomeController->authAdmin();
+      $UtilisateurController->treatmentConnection();
     } else {
       $HomeController->index();
     }

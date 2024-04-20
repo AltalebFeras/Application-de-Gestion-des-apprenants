@@ -22,14 +22,14 @@ function handleFormSubmission(event) {
 
   const body = document.getElementById("body");
   const inputEmail = document.getElementById("Email");
-  const inputPassword = document.getElementById("Mot_De_Passe");
+  const inputMot_De_Passe = document.getElementById("Mot_De_Passe");
   const inputEmailValue = inputEmail.value;
-  const inputPasswordValue = inputPassword.value;
+  const inputMot_De_PasseValue = inputMot_De_Passe.value;
 
   const url = "/";
   const user = {
-    email: inputEmailValue,
-    password: inputPasswordValue,
+    Email: inputEmailValue,
+    Mot_De_Passe: inputMot_De_PasseValue,
   };
 
   fetch(url, {

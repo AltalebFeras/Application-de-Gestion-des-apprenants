@@ -3,6 +3,7 @@
 namespace src\Controllers;
 
 use src\Repositories\PromoRepository;
+use src\Repositories\UtilisateurRepository;
 
 class HomeController
 {
@@ -47,6 +48,8 @@ class HomeController
     }
   }
 
+
+  
   public function displayFormAjouterPromotion()
   {
     include_once __DIR__ . '/../Views/ajouterPromotion.php';

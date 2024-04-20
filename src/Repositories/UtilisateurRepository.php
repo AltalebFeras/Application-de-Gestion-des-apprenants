@@ -177,5 +177,106 @@ class UtilisateurRepository
         } catch (PDOException $e) {
             return false;
         }
+ 
     }
+
+
+
+    public function getUserByEmail($email)
+    {
+        $db = new Database();
+        $conn = $db->getDB();
+    
+        $request = 'SELECT * FROM ' . PREFIXE . 'utilisateurs WHERE Email = ?';
+        $stmt = $conn->prepare($request);
+        $stmt->bindValue(1, $email);
+        $stmt->execute();
+    
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+
+
+
+    public function treatmentConection()
+    {
+        
+    
+        $request = file_get_contents('php://input');
+    
+        if (!empty($request)) {
+            $decodedRequest = json_decode($request);
+    
+            if ($decodedRequest && isset($decodedRequest->Email) && isset($decodedRequest->Mot_De_Passe)) {
+                $Email = filter_var($decodedRequest->Email, FILTER_VALIDATE_EMAIL);
+                $Mot_De_Passe = trim($decodedRequest->Mot_De_Passe);  
+    
+                if ($Email === false) {
+                    echo json_encode(array("success" => false, "error" => "Invalid email format."));
+                    exit();
+                }
+    
+                $db = new Database();
+                $conn = $db->getDB();
+    
+                $request = 'SELECT * FROM ' . PREFIXE . 'utilisateurs WHERE Email = ?';
+                $stmt = $conn->prepare($request);
+                $stmt->bindValue(1, $Email);
+                $stmt->execute();
+    
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+                // Check if user exists
+                if ($row) {
+                    // Verify password
+                    if (password_verify($Mot_De_Passe, $row['Mot_De_Passe'])) {
+                        $_SESSION['connected'] = true;
+                        $_SESSION['role'] = 'admin';
+    
+                        echo json_encode(array("success" => true, "message" => "Authentication successful."));
+                        exit();
+                    } else {
+                        echo json_encode(array("success" => false, "error" => "Incorrect email or password."));
+                        exit();
+                    }
+                } else {
+                    echo json_encode(array("success" => false, "error" => "User not found."));
+                    exit();
+                }
+            } else {
+                echo json_encode(array("success" => false, "error" => "Invalid request data."));
+                exit();
+            }
+        } else {
+            echo json_encode(array("success" => false, "error" => "Empty request data."));
+            exit();
+        }
+    }
+    
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

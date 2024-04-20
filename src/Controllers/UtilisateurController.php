@@ -82,8 +82,8 @@ class UtilisateurController
                 }
 
                 $utilisateurs = $UtilisateurRepository->getAllUtilisateurs();
-                
-                
+
+
                 include_once __DIR__ . '/../Views/components/tableUser.php';
             }
         }
@@ -148,6 +148,71 @@ class UtilisateurController
             }
         } else {
             echo "No request data received.";
+        }
+    }
+
+
+
+
+    public function treatmentConnection()
+    {
+        $request = file_get_contents('php://input');
+
+        if (!empty($request)) {
+            $decodedRequest = json_decode($request);
+
+            if ($decodedRequest && isset($decodedRequest->Email) && isset($decodedRequest->Mot_De_Passe)) {
+                $Email = filter_var($decodedRequest->Email, FILTER_VALIDATE_EMAIL);
+                $Mot_De_Passe = trim($decodedRequest->Mot_De_Passe);
+
+                if ($Email === false) {
+                    echo json_encode(array("success" => false, "error" => "Invalid email format."));
+                    exit();
+                }
+
+                $userRepository = new UtilisateurRepository();
+                $user = $userRepository->getUserByEmail($Email);
+
+                if ($user) {
+                    if (password_verify($Mot_De_Passe, $user['Mot_De_Passe'])) {
+                        $_SESSION['connected'] = true;
+                        // $_SESSION['role'] = 'admin';
+
+                        $role = $user['ID_Role'];
+                        // var_dump($role);
+                        // die;
+                         switch ($role) {
+                            case 1:
+                                $_SESSION['role'] = 'apprenant';
+                                break;
+                            case 2:
+                                $_SESSION['role'] = 'formateur';
+                                break;
+                            case 3:
+                                $_SESSION['role'] = 'admin';
+                                break;
+                            default:
+                                $_SESSION['role'] = 'Aprrenant';
+                        }
+                        include_once __DIR__ . '/../Views/dashboard.php';
+
+
+                        exit();
+                    } else {
+                        echo json_encode(array("success" => false, "error" => "Incorrect email or password."));
+                        exit();
+                    }
+                } else {
+                    echo json_encode(array("success" => false, "error" => "User not found."));
+                    exit();
+                }
+            } else {
+                echo json_encode(array("success" => false, "error" => "Invalid request data."));
+                exit();
+            }
+        } else {
+            echo json_encode(array("success" => false, "error" => "Empty request data."));
+            exit();
         }
     }
 }
