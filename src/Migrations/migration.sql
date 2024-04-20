@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 17, 2024 at 09:14 AM
+-- Generation Time: Apr 20, 2024 at 01:52 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -38,7 +38,15 @@ CREATE TABLE IF NOT EXISTS `aga_cours` (
   PRIMARY KEY (`ID_Cours`),
   UNIQUE KEY `UQ_ID_Cours` (`ID_Cours`),
   KEY `FK_AGA_Promos_TO_AGA_Cours` (`ID_Promo`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `aga_cours`
+--
+
+INSERT INTO `aga_cours` (`ID_Cours`, `Date_Cours`, `Heure_Debut`, `Heure_Fin`, `Code_Aleatoire`, `ID_Promo`) VALUES
+(1, '0000-00-00', '09:00:00', '12:00:00', 0, 0),
+(2, '0000-00-00', '13:00:00', '17:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -66,22 +74,23 @@ CREATE TABLE IF NOT EXISTS `aga_participation_statuts` (
 DROP TABLE IF EXISTS `aga_promos`;
 CREATE TABLE IF NOT EXISTS `aga_promos` (
   `ID_Promo` int NOT NULL AUTO_INCREMENT,
-  `Nom` varchar(255) NOT NULL,
+  `Nom` varchar(55) NOT NULL,
   `Date_Debut` date NOT NULL,
   `Date_Fin` date NOT NULL,
   `Place_Dispo` int NOT NULL,
   PRIMARY KEY (`ID_Promo`),
-  UNIQUE KEY `UQ_ID_Promo` (`ID_Promo`)
-) ENGINE=MyISAM AUTO_INCREMENT=313 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `UQ_ID_Promo` (`ID_Promo`),
+  UNIQUE KEY `UQ_Nom` (`Nom`)
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `aga_promos`
 --
 
 INSERT INTO `aga_promos` (`ID_Promo`, `Nom`, `Date_Debut`, `Date_Fin`, `Place_Dispo`) VALUES
-(312, 'CDA', '2024-02-01', '2025-02-01', 10),
-(311, 'DWWM3', '2024-01-01', '2024-12-01', 15),
-(310, 'DWWM2', '2024-01-01', '2024-12-01', 15);
+(34, 'CDA', '2024-09-09', '2025-05-09', 7),
+(33, 'DWWM3', '2024-04-08', '2024-11-29', 10),
+(32, 'DWWM2', '2024-04-01', '2024-09-30', 5);
 
 -- --------------------------------------------------------
 
@@ -95,15 +104,16 @@ CREATE TABLE IF NOT EXISTS `aga_roles` (
   `Nom_Role` varchar(255) NOT NULL,
   PRIMARY KEY (`ID_Role`),
   UNIQUE KEY `UQ_ID_Role` (`ID_Role`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `aga_roles`
 --
 
 INSERT INTO `aga_roles` (`ID_Role`, `Nom_Role`) VALUES
-(1, 'apprenant'),
-(2, 'formateur');
+(2, 'Formateur'),
+(1, 'Aprrenant'),
+(3, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -124,15 +134,37 @@ CREATE TABLE IF NOT EXISTS `aga_utilisateurs` (
   UNIQUE KEY `UQ_ID_Utilisateur` (`ID_Utilisateur`),
   UNIQUE KEY `UQ_Email` (`Email`),
   KEY `FK_AGA_Roles_TO_AGA_Utilisateurs` (`ID_Role`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `aga_utilisateurs`
 --
 
 INSERT INTO `aga_utilisateurs` (`ID_Utilisateur`, `Nom`, `Prenom`, `Email`, `Mot_De_Passe`, `Compte_Active`, `ID_Role`) VALUES
-(35, 'Altaleb', 'Feras', 'feras@gmail.co', '', 'NON', 1),
-(36, 'Altaf ', 'Eman', 'eman@gmail.c', '', 'NON', 1);
+(97, 'Johnson', 'Dwayne ', 'Dwayne.Johnson1972@testmail.fr', '', 'Non', 2),
+(96, 'Statham', 'Jason ', 'Jason.Statham1967@testmail.fr', '', 'Non', 1),
+(95, 'Min-hyuk', 'Kang ', 'Kang.Min-hyuk@testmail.fr', '', 'Non', 1),
+(93, 'Boris ', 'Johnson', 'Boris.Johnson@testmail.fr', '', 'Non', 1),
+(94, 'Sunak', 'Rishi ', 'Sunak@testmail.fr', '', 'Non', 1),
+(91, 'Piqué', 'Gerard ', 'Pique@testmail.fr', '', 'Non', 1),
+(92, 'Cristiano ', 'Ronaldo', 'Cristiano123@testmail.fr', '', 'Non', 1),
+(84, 'Miley', 'Cyrus', 'Miley.Cyrus@tsetmail.fr', '', 'Non', 1),
+(85, 'Abraham', 'Lincoln', 'Lincoln@tsetmail.fr', '', 'Non', 1),
+(86, '50 Cent', 'Curtis James Jackson III', '0.5$@tsetmail.fr', '', 'Non', 2),
+(87, 'Z', 'Arthur', 'arthur.z@testmail.fr', '', 'Non', 1),
+(88, 'Shakira', 'Isabel ', 'Shakira@testmail.fr', '', 'Non', 1),
+(89, 'Beckham', 'David ', 'Beckham@testmail.fr', '', 'Non', 1),
+(90, 'Lopez', 'Jennifer ', 'Lopez@testmail.fr', '', 'Non', 1),
+(81, 'Obama', 'Barack', 'Obama@tsetmail.fr', '', 'Non', 1),
+(82, 'Biden', 'Joe', 'Joe@tsetmail.fr', '', 'Non', 1),
+(83, 'Lady Gaga ', 'Stefani Joanne', 'Lady.Gaga@tsetmail.fr', '', 'Non', 1),
+(79, 'Altaleb', 'Feras', 'feras@tsetmail.fr', '', 'Non', 1),
+(80, 'TRAMPE', 'Donald', 'Donald @tsetmail.fr', '', 'Non', 1),
+(98, 'Aniston', ' Jennifer', 'Jennifer.Aniston@testmail.com', '', 'Non', 1),
+(99, 'LeBlanc', ' Matt ', 'LeBlanc@testmail.com', '', 'Non', 1),
+(100, 'Schwimmer', 'David ', 'Schwimmer.freinds@testmail.com', '', 'Non', 1),
+(101, 'Kudrow', 'Lisa ', 'Kudrow.freinds12@testmail.com', '', 'Non', 2),
+(102, 'Matthew ', 'Perry', 'Matthew2.freinds12@testmail.com', '', 'Non', 1);
 
 -- --------------------------------------------------------
 
@@ -147,6 +179,36 @@ CREATE TABLE IF NOT EXISTS `aga_utilisateurs_promos` (
   KEY `FK_AGA_Utilisateurs_TO_AGA_Utilisateurs_Promos` (`ID_Utilisateur`),
   KEY `FK_AGA_Promos_TO_AGA_Utilisateurs_Promos` (`ID_Promo`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `aga_utilisateurs_promos`
+--
+
+INSERT INTO `aga_utilisateurs_promos` (`ID_Utilisateur`, `ID_Promo`) VALUES
+(79, 34),
+(80, 34),
+(81, 34),
+(82, 34),
+(83, 34),
+(84, 34),
+(85, 34),
+(86, 34),
+(87, 33),
+(88, 33),
+(89, 33),
+(90, 33),
+(91, 33),
+(92, 33),
+(93, 33),
+(94, 33),
+(95, 33),
+(96, 33),
+(97, 33),
+(98, 32),
+(99, 32),
+(100, 32),
+(101, 32),
+(102, 32);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

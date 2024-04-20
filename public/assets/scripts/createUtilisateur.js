@@ -54,7 +54,8 @@ document
     if (!validateForm()) {
       return;
     }
-
+    const userForm = document.getElementById('userForm')
+    
     const tableUserDiv = document.getElementById("tableUserDiv");
     const inputNom = document.getElementById("Nom");
     const inputPrenom = document.getElementById("Prenom");
@@ -95,6 +96,7 @@ document
         tableUserDiv.classList.remove("d-none");
         tableUserDiv.innerHTML = "";
         tableUserDiv.innerHTML = result;
+        userForm.reset();
         reappendScript();
       });
   });

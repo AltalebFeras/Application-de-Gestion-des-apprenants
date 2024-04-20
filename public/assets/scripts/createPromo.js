@@ -99,12 +99,7 @@ document
         tablePromoDiv.innerHTML = "";
         tablePromoDiv.innerHTML = result;
         ajouterPromoDiv.classList.add("d-none");
-        appendNewScripts();
-
-        inputPromoNomValue = "";
-        inputDateDebutValue = "";
-        inputPlaceDispoValue = "";
-        inputDateFinValue = "";
         promoForm.reset();
+        appendNewScripts();
       });
   });
