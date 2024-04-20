@@ -177,6 +177,7 @@ class UtilisateurController
                     if (password_verify($Mot_De_Passe, $user['Mot_De_Passe'])) {
                         $_SESSION['connected'] = true;
                         // $_SESSION['role'] = 'admin';
+                        $_SESSION['Email'] = $Email;
 
                         $role = $user['ID_Role'];
                         // var_dump($role);

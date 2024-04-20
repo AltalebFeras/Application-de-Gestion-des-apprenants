@@ -90,7 +90,7 @@ class HomeController
 
   public function quit()
   {
-    session_destroy();
+    // session_destroy();
     $_SESSION['connected'] = false;
     include_once __DIR__ . '/../Views/connexion.php';
   }

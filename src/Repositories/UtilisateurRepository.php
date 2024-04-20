@@ -70,58 +70,58 @@ class UtilisateurRepository
     }
 
     public function getAllUtilisateurs()
-{
-    try {
-        $requestPayload = json_decode(file_get_contents('php://input'));
+    {
+        try {
+            $requestPayload = json_decode(file_get_contents('php://input'));
 
-        // Validate and sanitize input
-        $idThisPromo = null;
-        if ($requestPayload && isset($requestPayload->idThisPromo)) {
-            $idThisPromo = htmlspecialchars($requestPayload->idThisPromo);
-        }
+            // Validate and sanitize input
+            $idThisPromo = null;
+            if ($requestPayload && isset($requestPayload->idThisPromo)) {
+                $idThisPromo = htmlspecialchars($requestPayload->idThisPromo);
+            }
 
-        $query = "SELECT * 
+            $query = "SELECT * 
             FROM " . PREFIXE . "utilisateurs
             JOIN " . PREFIXE . "utilisateurs_promos
             ON " . PREFIXE . "utilisateurs.ID_Utilisateur = " . PREFIXE . "utilisateurs_promos.ID_Utilisateur";
 
-        if ($idThisPromo !== null) {
-            $query .= " WHERE " . PREFIXE . "utilisateurs_promos.ID_Promo = :promo_id";
-        } else {
-            $query .= " WHERE " . PREFIXE . "utilisateurs_promos.ID_Promo = :promo_id";
+            if ($idThisPromo !== null) {
+                $query .= " WHERE " . PREFIXE . "utilisateurs_promos.ID_Promo = :promo_id";
+            } else {
+                $query .= " WHERE " . PREFIXE . "utilisateurs_promos.ID_Promo = :promo_id";
+            }
+
+            $stmt = $this->DB->prepare($query);
+
+            if ($idThisPromo !== null) {
+                $stmt->bindParam(':promo_id', $idThisPromo);
+            } else {
+                $stmt->bindParam(':promo_id', $_SESSION['ID_Promo']);
+            }
+
+            $stmt->execute();
+
+            $utilisateurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $utilisateurObjects = [];
+            foreach ($utilisateurs as $utilisateur) {
+                $user = new Utilisateur();
+                $user->ID_Utilisateur = $utilisateur['ID_Utilisateur'];
+                $user->Nom = $utilisateur['Nom'];
+                $user->Prenom = $utilisateur['Prenom'];
+                $user->Email = $utilisateur['Email'];
+                $user->Compte_Active = $utilisateur['Compte_Active'];
+                $user->ID_Role = $utilisateur['ID_Role'];
+                $utilisateurObjects[] = $user;
+            }
+
+            return $utilisateurObjects;
+        } catch (PDOException $e) {
+            // Log or handle the exception appropriately
+            error_log("Error fetching utilisateurs: " . $e->getMessage());
+            return [];
         }
-
-        $stmt = $this->DB->prepare($query);
-
-        if ($idThisPromo !== null) {
-            $stmt->bindParam(':promo_id', $idThisPromo);
-        } else {
-            $stmt->bindParam(':promo_id', $_SESSION['ID_Promo']);
-        }
-
-        $stmt->execute();
-
-        $utilisateurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $utilisateurObjects = [];
-        foreach ($utilisateurs as $utilisateur) {
-            $user = new Utilisateur();
-            $user->ID_Utilisateur = $utilisateur['ID_Utilisateur'];
-            $user->Nom = $utilisateur['Nom'];
-            $user->Prenom = $utilisateur['Prenom'];
-            $user->Email = $utilisateur['Email'];
-            $user->Compte_Active = $utilisateur['Compte_Active'];
-            $user->ID_Role = $utilisateur['ID_Role'];
-            $utilisateurObjects[] = $user;
-        }
-
-        return $utilisateurObjects;
-    } catch (PDOException $e) {
-        // Log or handle the exception appropriately
-        error_log("Error fetching utilisateurs: " . $e->getMessage());
-        return [];
     }
-}
 
 
 
@@ -177,7 +177,6 @@ class UtilisateurRepository
         } catch (PDOException $e) {
             return false;
         }
- 
     }
 
 
@@ -186,12 +185,12 @@ class UtilisateurRepository
     {
         $db = new Database();
         $conn = $db->getDB();
-    
+
         $request = 'SELECT * FROM ' . PREFIXE . 'utilisateurs WHERE Email = ?';
         $stmt = $conn->prepare($request);
         $stmt->bindValue(1, $email);
         $stmt->execute();
-    
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -201,39 +200,39 @@ class UtilisateurRepository
 
     public function treatmentConection()
     {
-        
-    
+
+
         $request = file_get_contents('php://input');
-    
+
         if (!empty($request)) {
             $decodedRequest = json_decode($request);
-    
+
             if ($decodedRequest && isset($decodedRequest->Email) && isset($decodedRequest->Mot_De_Passe)) {
                 $Email = filter_var($decodedRequest->Email, FILTER_VALIDATE_EMAIL);
-                $Mot_De_Passe = trim($decodedRequest->Mot_De_Passe);  
-    
+                $Mot_De_Passe = trim($decodedRequest->Mot_De_Passe);
+
                 if ($Email === false) {
                     echo json_encode(array("success" => false, "error" => "Invalid email format."));
                     exit();
                 }
-    
+
                 $db = new Database();
                 $conn = $db->getDB();
-    
+
                 $request = 'SELECT * FROM ' . PREFIXE . 'utilisateurs WHERE Email = ?';
                 $stmt = $conn->prepare($request);
                 $stmt->bindValue(1, $Email);
                 $stmt->execute();
-    
+
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
                 // Check if user exists
                 if ($row) {
                     // Verify password
                     if (password_verify($Mot_De_Passe, $row['Mot_De_Passe'])) {
                         $_SESSION['connected'] = true;
                         $_SESSION['role'] = 'admin';
-    
+
                         echo json_encode(array("success" => true, "message" => "Authentication successful."));
                         exit();
                     } else {
@@ -253,30 +252,41 @@ class UtilisateurRepository
             exit();
         }
     }
-    
 
 
+
+
+    public function getUserDetails()
+    {
+
+        $db = new Database();
+        $conn = $db->getDB();
+        $Email =   $_SESSION['Email'];
+
+        $request = 'SELECT * FROM ' . PREFIXE . 'utilisateurs WHERE Email = ?';
+
+
+        $stmt = $conn->prepare($request);
+        $stmt->bindValue(1, $Email);
+        $stmt->execute();
+
+        $utilisateurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $utilisateurObjects = [];
+        foreach ($utilisateurs as $utilisateur) {
+            $user = new Utilisateur();
+            $user->ID_Utilisateur = $utilisateur['ID_Utilisateur'];
+            $user->Nom = $utilisateur['Nom'];
+            $user->Prenom = $utilisateur['Prenom'];
+            $user->Email = $utilisateur['Email'];
+            $user->Compte_Active = $utilisateur['Compte_Active'];
+            $user->ID_Role = $utilisateur['ID_Role'];
+            $utilisateurObjects[] = $user;
+        }
+
+        return $utilisateurObjects;
+    }
+
+
+   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
