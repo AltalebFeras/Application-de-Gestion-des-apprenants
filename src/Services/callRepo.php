@@ -26,7 +26,8 @@ $_SESSION['ID_Utilisateur'] = $utilisateur->getIDUtilisateur();
 
 
 $coursRepositoty = new CoursRepositoty;
-$coursCode = $coursRepositoty->displayCodeMatin();
+$coursCodeMatin = $coursRepositoty->displayCodeMatin();
+$coursCodeApresMidi = $coursRepositoty->displayCodeApresMidi();
 // $cours = $coursCode[0];
 // foreach ($coursCodes as $cours) {
    

@@ -17,5 +17,13 @@ class  CoursController
 
     }
 
+    public function generateCodeApresMidi(){
+
+        $coursRepositoty = new CoursRepositoty;
+        $coursRepositoty->insertNewCodeApresMidi();
+        $coursRepositoty->displayCodeApresMidi();
+        include_once __DIR__ . '/../Views/components/generateCodeApresMidi.php';
+
+    }
 
 }

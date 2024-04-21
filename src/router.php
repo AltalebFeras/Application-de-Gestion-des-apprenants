@@ -74,10 +74,16 @@ switch ($route) {
 
     break;
 
-    case HOME_URL . 'generateCodeMatin':
-      $CoursController->generateCodeMatin();
-  
-      break;
+  case HOME_URL . 'generateCodeMatin':
+    $CoursController->generateCodeMatin();
+
+    break;
+
+
+  case HOME_URL . 'generateCodeApresMidi':
+    $CoursController->generateCodeApresMidi();
+
+    break;
 
 
   case HOME_URL . 'ajouterApprenant':

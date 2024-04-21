@@ -26,11 +26,9 @@
 
                 <div class="mx-2 ">
 
-
                     <div id="divBtnMatinValiderLeCodeFormateur" class="d-flex flex-coulmn flex-row-reverse">
                         <button id="matinValiderLeCodeFormateur" type="button" class="my-3 mx-2 d-flex justify-content-end btn btn-primary">Valider présence</button>
                     </div>
-
 
                 </div>
             </div>
@@ -50,9 +48,7 @@
 
                 <div class="mx-2 ">
 
-
-
-                    <div class="d-flex flex-row-reverse">
+                    <div id="divBtnApresMidiValiderLeCodeFormateur" class="d-flex flex-row-reverse">
                         <button id="apresMidiValiderLeCodeFormateur" type="submit" class="my-3 mx-2 d-flex justify-content-end btn btn-primary">Valider présence</button>
                     </div>
 

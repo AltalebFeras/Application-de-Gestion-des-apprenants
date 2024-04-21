@@ -44,7 +44,7 @@ VALUES (:Date_Cours, :Heure_Debut, :Heure_Fin, :Code_Aleatoire, :ID_Promo)
     }
 
 
-    public function insertNewCodeApreMidi()
+    public function insertNewCodeApresMidi()
     {
 
 
@@ -82,28 +82,28 @@ VALUES (:Date_Cours, :Heure_Debut, :Heure_Fin, :Code_Aleatoire, :ID_Promo)
     {
         $Heure_Debut = date("H:i:s", strtotime('9:00:00'));
         $ID_Promo = $_SESSION['ID_Promo'];
-    
+
         $db = new Database();
         $conn = $db->getDB();
-    
+
         $request = 'SELECT Code_Aleatoire FROM ' . PREFIXE . 'cours WHERE ID_Promo = ? AND Heure_Debut = ?';
         $stmt = $conn->prepare($request);
         $stmt->bindValue(1, $ID_Promo);
         $stmt->bindValue(2, $Heure_Debut);
         $stmt->execute();
-    
+
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
         if ($result) {
             return strval($result['Code_Aleatoire']);
         } else {
-            return '';  
+            return '';
         }
     }
-    
 
 
-    public function displayCodeApreMidi()
+
+    public function displayCodeApresMidi()
     {
         $Heure_Debut = date("H:i:s", strtotime('13:00:00'));
         $ID_Promo = $_SESSION['ID_Promo'];
@@ -117,6 +117,12 @@ VALUES (:Date_Cours, :Heure_Debut, :Heure_Fin, :Code_Aleatoire, :ID_Promo)
         $stmt->bindValue(2, $Heure_Debut);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            return strval($result['Code_Aleatoire']);
+        } else {
+            return '';
+        }
     }
 }
