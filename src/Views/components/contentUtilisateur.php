@@ -11,8 +11,8 @@
                 <div class=" mx-2 card-text d-flex justify-content-between">
                     <div>
                         <h3 class=" mx-2 my-1 card-text d-flex justify-content-start"><?php
-                                                                                        echo $promo->getNom(); ?>- matin</h3>
-                        <p class="card-text d-flex justify-content-start mx-2"><?php echo $promo->getPlaceDispo();
+                                                                                        echo $promoDetails['Nom']; ?>- matin</h3>
+                        <p class="card-text d-flex justify-content-start mx-2"><?php echo $promoDetails['Place_Dispo'];
                                                                                 var_dump($promoDetails);
 
                                                                                 ?> participants</p>
@@ -36,8 +36,8 @@
             <div class="card-text mb-3 mx-2 bg-light ">
                 <div class=" mx-2 card-text d-flex justify-content-between">
                     <div>
-                        <h3 class=" mx-2 my-1 card-text d-flex justify-content-start"><?php echo $promo->getNom(); ?>- après midi</h3>
-                        <p class="card-text d-flex justify-content-start mx-2"><?php echo $promo->getPlaceDispo(); ?> participants</p>
+                        <h3 class=" mx-2 my-1 card-text d-flex justify-content-start"><?php  echo $promoDetails['Nom']; ?>- après midi</h3>
+                        <p class="card-text d-flex justify-content-start mx-2"><?php echo $promoDetails['Place_Dispo'];; ?> participants</p>
 
                     </div>
                     <div class="mx-2">
