@@ -72,7 +72,9 @@
           </div>
         </div>
 
-        <div id="singatureStatusDiv"  class="mx-2 ">
+        <div id="messageError" class="text-danger fw-bold" ></div>
+
+        <div id="singatureMatinStatusDiv"  class="mx-2 ">
 
           <form class="d-flex flex-column my-3 mx-2">
             <input type="number" class="my-3 mx-2" id="Code_Aleatoire" name="Code_Aleatoire" type="number" placeholder="....."  />
@@ -96,8 +98,7 @@
 
           </div>
         </div>
-
-        <div class="mx-2 ">
+        <div id="singatureApresMidiStatusDiv" class="mx-2 ">
 
           <form class="d-flex flex-column my-3 mx-2">
             <input type="Code_Aleatoire" class="my-3 mx-2" name="Code_Aleatoire" type="number" placeholder="....." />

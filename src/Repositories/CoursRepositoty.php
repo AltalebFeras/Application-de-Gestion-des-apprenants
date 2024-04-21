@@ -250,6 +250,14 @@ VALUES (:ID_Cours, :ID_Utilisateur, :Status)
                 'Status' => $Status
 
             ]);
+
+            echo json_encode([
+                'succes' => '<div id="divBtnMatinValiderLeCodeFormateur" class="d-flex align-items-end flex-column">
+                               
+                                <button id="matinValiderLeCodeFormateur" type="button" class="my-1 mx-2 btn btn-warning font-weight-bold">Signature recueillie</button>
+                            </div>'
+            ]);
+            
         }
         else {
             

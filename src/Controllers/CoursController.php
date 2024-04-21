@@ -42,6 +42,7 @@ class  CoursController
 
                 $coursRepositoty = new CoursRepositoty;
                 $coursRepositoty->singer($data);
+                
             }
         }
     }
