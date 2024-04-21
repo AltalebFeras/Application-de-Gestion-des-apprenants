@@ -77,23 +77,30 @@ function handleFormSubmission(event) {
     })
     .then((result) => {
       singatureStatusDiv.innerHTML = "";
+  
+      const response = JSON.parse(result);
+  
+      if (response.error) {
 
-      let divElement = document.createElement("div");
-      divElement.classList.add("d-flex", "flex-row-reverse");
-
-      let buttonElement = document.createElement("button");
-      buttonElement.type = "button";
-      buttonElement.classList.add(
-        "my-3",
-        "mx-2",
-        "d-flex",
-        "justify-content-end",
-        "btn",
-        "btn-secondary"
-      );
-      buttonElement.textContent = "Signature recueillie";
-      divElement.appendChild(buttonElement);
-      singatureStatusDiv.appendChild(divElement);
-
-    });
-}
+          singatureStatusDiv.textContent = response.error;
+          
+      } else {
+          let divElement = document.createElement("div");
+          divElement.classList.add("d-flex", "flex-row-reverse");
+  
+          let buttonElement = document.createElement("button");
+          buttonElement.type = "button";
+          buttonElement.classList.add(
+              "my-3",
+              "mx-2",
+              "d-flex",
+              "justify-content-end",
+              "btn",
+              "btn-secondary"
+          );
+          buttonElement.textContent = "Signature recueillie";
+          divElement.appendChild(buttonElement);
+          singatureStatusDiv.appendChild(divElement);
+      }
+  });
+}  

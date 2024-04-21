@@ -28,6 +28,13 @@ $_SESSION['ID_Utilisateur'] = $utilisateur->getIDUtilisateur();
 $coursRepositoty = new CoursRepositoty;
 $coursCodeMatin = $coursRepositoty->displayCodeMatin();
 $coursCodeApresMidi = $coursRepositoty->displayCodeApresMidi();
+
+$ID_Utilisateur = $_SESSION['ID_Utilisateur'];
+$ID_Promo = $coursRepositoty->getUserPromoID($ID_Utilisateur);
+$ID_Cours = $coursRepositoty->getUserCoursID($ID_Promo);
+ 
+$getCode = $coursRepositoty->getStoredCode();
+
 // $cours = $coursCode[0];
 // foreach ($coursCodes as $cours) {
    
