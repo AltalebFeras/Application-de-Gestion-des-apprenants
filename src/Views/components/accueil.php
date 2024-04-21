@@ -65,7 +65,9 @@
       var_dump($_SESSION['ID_Utilisateur']);
       var_dump($ID_Promo);
       var_dump($ID_Cours);
+      var_dump($ID_CoursApresMidi);
       var_dump($getCode);
+      var_dump($getCodeApresMidi);
 
       ?></p>
 
@@ -98,10 +100,13 @@
 
           </div>
         </div>
+
+        <div id="messageError1" class="text-danger fw-bold" ></div>
+
         <div id="singatureApresMidiStatusDiv" class="mx-2 ">
 
           <form class="d-flex flex-column my-3 mx-2">
-            <input type="Code_Aleatoire" class="my-3 mx-2" name="Code_Aleatoire" type="number" placeholder="....." />
+            <input type="Code_Aleatoire1" class="my-3 mx-2" id="Code_Aleatoire1" name="Code_Aleatoire" type="number" placeholder="....." />
             <div class="d-flex flex-row-reverse" >
               <button id="apresMidiValiderLeCodeApprenant" type="submit" class="my-3 mx-2 d-flex justify-content-end btn btn-primary">Valider présence</button>
             </div>

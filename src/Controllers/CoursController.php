@@ -46,4 +46,25 @@ class  CoursController
             }
         }
     }
+
+    
+    public function codeValidationApresMidi()
+    {
+
+        $request = file_get_contents('php://input');
+
+        if ($request) {
+            $decodedRequest = json_decode($request);
+
+            if ($decodedRequest) {
+                $data = [
+                    'Code_Aleatoire' => htmlspecialchars($decodedRequest->Code_Aleatoire),
+                ];
+
+                $coursRepositoty = new CoursRepositoty;
+                $coursRepositoty->singerApresMidi($data);
+                
+            }
+        }
+    }
 }

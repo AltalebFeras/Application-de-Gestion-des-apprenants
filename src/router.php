@@ -90,6 +90,10 @@ switch ($route) {
 
     break;
 
+    case HOME_URL . 'codeValidationApresMidi':
+      $CoursController->codeValidationApresMidi();
+  
+      break;
 
   case HOME_URL . 'ajouterApprenant':
 

@@ -154,20 +154,24 @@ VALUES (:Date_Cours, :Heure_Debut, :Heure_Fin, :Code_Aleatoire, :ID_Promo)
             return '';
         }
     }
-    public function getUserCoursID($ID_Promo)
+    public function getUserCoursMatinID($ID_Promo)
     {
         try {
             $db = new Database();
             $conn = $db->getDB();
 
             $ID_Utilisateur = $_SESSION['ID_Utilisateur'];
-
             $ID_Promo = $this->getUserPromoID($ID_Utilisateur);
+            $Date_Cours = date("Y-m-d");
+            $Heure_Debut = date("H:i:s", strtotime('09:00:00'));
 
-            $request = 'SELECT ID_Cours FROM ' . PREFIXE . 'cours WHERE ID_Promo = ?';
+            $request = 'SELECT ID_Cours FROM ' . PREFIXE . 'cours WHERE ID_Promo = ? AND Date_Cours = ? AND Heure_Debut = ?';
 
             $stmt = $conn->prepare($request);
             $stmt->bindParam(1, $ID_Promo, PDO::PARAM_INT);
+            $stmt->bindParam(2, $Date_Cours, PDO::PARAM_STR);
+            $stmt->bindParam(3, $Heure_Debut, PDO::PARAM_STR);
+
             $stmt->execute();
 
             $ID_Cours = $stmt->fetchColumn();
@@ -233,7 +237,7 @@ VALUES (:Date_Cours, :Heure_Debut, :Heure_Fin, :Code_Aleatoire, :ID_Promo)
 
             $ID_Utilisateur = $_SESSION['ID_Utilisateur'];
             $ID_Promo = $this->getUserPromoID($ID_Utilisateur);
-            $ID_Cours = $this->getUserCoursID($ID_Promo);
+            $ID_Cours = $this->getUserCoursMatinID($ID_Promo);
             $Status = "présent";
 
 
@@ -254,16 +258,130 @@ VALUES (:ID_Cours, :ID_Utilisateur, :Status)
             echo json_encode([
                 'succes' => '<div id="divBtnMatinValiderLeCodeFormateur" class="d-flex align-items-end flex-column">
                                
-                                <button id="matinValiderLeCodeFormateur" type="button" class="my-1 mx-2 btn btn-warning font-weight-bold">Signature recueillie</button>
+                                <button id="matinValiderLeCodeApprenant" type="button" class="my-1 mx-2 btn btn-secondary font-weight-bold">Signature recueillie</button>
                             </div>'
             ]);
-            
+        } else {
+
+            echo json_encode(['error' => 'Code invalide. Veuillez réessayer.']);
         }
-        else {
-            
-            echo json_encode(['error' => 'Invalid code. Please try again.']);
-        }
-    
     }
-    
+
+
+
+
+    public function getUserCoursApresMidiID($ID_Promo)
+    {
+        try {
+            $db = new Database();
+            $conn = $db->getDB();
+
+            $ID_Utilisateur = $_SESSION['ID_Utilisateur'];
+            $ID_Promo = $this->getUserPromoID($ID_Utilisateur);
+            $Date_Cours = date("Y-m-d");
+            $Heure_Debut = date("H:i:s", strtotime('13:00:00'));
+
+            $request = 'SELECT ID_Cours FROM ' . PREFIXE . 'cours WHERE ID_Promo = ? AND Date_Cours = ? AND Heure_Debut = ?';
+
+            $stmt = $conn->prepare($request);
+            $stmt->bindParam(1, $ID_Promo, PDO::PARAM_INT);
+            $stmt->bindParam(2, $Date_Cours, PDO::PARAM_STR);
+            $stmt->bindParam(3, $Heure_Debut, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            $ID_Cours = $stmt->fetchColumn();
+
+            if ($ID_Cours !== false) {
+                return strval($ID_Cours);
+            } else {
+                return '';
+            }
+        } catch (PDOException $e) {
+
+            error_log('PDOException: ' . $e->getMessage());
+            return '';
+        }
+    }
+
+
+
+    public function getStoredCodeApresMidi()
+    {
+        try {
+
+            $ID_Utilisateur = $_SESSION['ID_Utilisateur'];
+            $ID_Promo = $this->getUserPromoID($ID_Utilisateur);
+            $Date_Cours = date("Y-m-d");
+            $Heure_Debut = date("H:i:s", strtotime('13:00:00'));
+
+            $db = new Database();
+            $conn = $db->getDB();
+
+
+
+            $request = 'SELECT Code_Aleatoire FROM ' . PREFIXE . 'cours WHERE ID_Promo = ? AND Date_Cours = ? AND Heure_Debut = ?';
+
+            $stmt = $conn->prepare($request);
+
+            $stmt->bindParam(1, $ID_Promo, PDO::PARAM_INT);
+            $stmt->bindParam(2, $Date_Cours, PDO::PARAM_STR);
+            $stmt->bindParam(3, $Heure_Debut, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $ID_Cours = $stmt->fetchColumn();
+
+            if ($ID_Cours !== false) {
+                return strval($ID_Cours);
+            } else {
+                return '';
+            }
+        } catch (PDOException $e) {
+            error_log('PDOException: ' . $e->getMessage());
+            return '';
+        }
+    }
+
+
+
+
+    public function singerApresMidi($data)
+    {
+
+        $Code_Aleatoire = isset($data['Code_Aleatoire']) ? $data['Code_Aleatoire'] : null;
+        $Code_AleatoireStored = $this->getStoredCodeApresMidi();
+
+        if ($Code_Aleatoire ===  $Code_AleatoireStored) {
+
+            $ID_Utilisateur = $_SESSION['ID_Utilisateur'];
+            $ID_Promo = $this->getUserPromoID($ID_Utilisateur);
+            $ID_Cours = $this->getUserCoursApresMidiID($ID_Promo);
+            $Status = "présent";
+
+
+            $database = new Database();
+
+            $query = $database->getDB()->prepare('
+INSERT INTO ' . PREFIXE . 'participation_statuts (ID_Cours, ID_Utilisateur, Status) 
+VALUES (:ID_Cours, :ID_Utilisateur, :Status)
+');
+
+            $query->execute([
+                'ID_Cours' => $ID_Cours,
+                'ID_Utilisateur' => $ID_Utilisateur,
+                'Status' => $Status
+
+            ]);
+
+            echo json_encode([
+                'succes' => '<div id="divBtnMatinValiderLeCodeFormateur" class="d-flex align-items-end flex-column">
+                               
+                                <button id="apresMidiValiderLeCodeApprenant" type="button" class="my-1 mx-2 btn btn-secondary font-weight-bold">Signature recueillie</button>
+                            </div>'
+            ]);
+        } else {
+
+            echo json_encode(['error' => 'Code invalide. Veuillez réessayer.']);
+        }
+    }
 }
