@@ -1,5 +1,3 @@
-
-
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
@@ -13,9 +11,11 @@
                 <div class=" mx-2 card-text d-flex justify-content-between">
                     <div>
                         <h3 class=" mx-2 my-1 card-text d-flex justify-content-start"><?php
-                                                                                        var_dump($promoDetails);
                                                                                         echo $promo->getNom(); ?>- matin</h3>
-                        <p class="card-text d-flex justify-content-start mx-2"><?php echo $promo->getPlaceDispo(); ?> participants</p>
+                        <p class="card-text d-flex justify-content-start mx-2"><?php echo $promo->getPlaceDispo();
+                                                                                var_dump($promoDetails);
+
+                                                                                ?> participants</p>
 
                     </div>
                     <div class="mx-2">
@@ -27,7 +27,7 @@
                 <div class="mx-2 ">
 
 
-                    <div class="d-flex flex-row-reverse">
+                    <div id="divBtnMatinValiderLeCodeFormateur" class="d-flex flex-coulmn flex-row-reverse">
                         <button id="matinValiderLeCodeFormateur" type="button" class="my-3 mx-2 d-flex justify-content-end btn btn-primary">Valider présence</button>
                     </div>
 

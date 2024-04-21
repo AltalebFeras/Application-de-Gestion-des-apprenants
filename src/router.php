@@ -3,11 +3,15 @@
 use src\Controllers\HomeController;
 use src\Controllers\PromoController;
 use src\Controllers\UtilisateurController;
-use src\Services\Routing;
+use src\Controllers\CoursController;
+
+// use src\Services\Routing;
 
 $HomeController = new HomeController;
 $PromoController = new PromoController;
 $UtilisateurController = new UtilisateurController;
+$CoursController = new CoursController;
+
 
 $route = $_SERVER['REDIRECT_URL'];
 $methode = $_SERVER['REQUEST_METHOD'];
@@ -69,6 +73,11 @@ switch ($route) {
     $HomeController->displayThisPromo();
 
     break;
+
+    case HOME_URL . 'generateCodeMatin':
+      $CoursController->generateCodeMatin();
+  
+      break;
 
 
   case HOME_URL . 'ajouterApprenant':

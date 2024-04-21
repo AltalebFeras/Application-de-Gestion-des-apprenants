@@ -12,22 +12,23 @@ $getUserPromoIDs =$promoRepository->getUserPromoIDs($ID_Utilisateur);
 $_SESSION['userPromoID'] = $getUserPromoIDs[0];
 $userPromoID= $_SESSION['userPromoID'];
 
-
 $promoDetail = $promoRepository->getPromoDetails();
 
-    
 foreach ($promoDetail as $promo) {
    
 }
-
-
-
-
 
 $utilisateurRepository = new UtilisateurRepository();
 $utilisateurs= $utilisateurRepository->getAllUtilisateurs();
 $utilisateurObjects = $utilisateurRepository->getUserDetails();
 $utilisateur = $utilisateurObjects[0];
 $_SESSION['ID_Utilisateur'] = $utilisateur->getIDUtilisateur();
- 
+
+
+$coursRepositoty = new CoursRepositoty;
+$coursCode = $coursRepositoty->displayCodeMatin();
+// $cours = $coursCode[0];
+// foreach ($coursCodes as $cours) {
+   
+// }
 
