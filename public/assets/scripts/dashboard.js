@@ -1,4 +1,3 @@
-
 function appendNewScripts() {
   const mainPromo = document.getElementById("mainPromo");
   let scripts = mainPromo.querySelectorAll("script");
@@ -45,6 +44,56 @@ document
     ajouterPromoDiv.classList.add("d-none");
   });
 
+
+
+
+
   
-  
- 
+document
+  .getElementById("matinValiderLeCodeApprenant")
+  .addEventListener("click", handleFormSubmission);
+
+function handleFormSubmission(event) {
+  event.preventDefault();
+
+  const singatureStatusDiv = document.getElementById("singatureStatusDiv");
+  const inputCode_Aleatoire = document.getElementById("Code_Aleatoire");
+  const inputCode_AleatoireValue = inputCode_Aleatoire.value;
+
+  const url = "/codeValidationMatin";
+  const user = {
+    Code_Aleatoire: inputCode_AleatoireValue,
+  };
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  })
+    .then((response) => {
+      return response.text();
+    })
+    .then((result) => {
+      singatureStatusDiv.innerHTML = "";
+
+      let divElement = document.createElement("div");
+      divElement.classList.add("d-flex", "flex-row-reverse");
+
+      let buttonElement = document.createElement("button");
+      buttonElement.type = "button";
+      buttonElement.classList.add(
+        "my-3",
+        "mx-2",
+        "d-flex",
+        "justify-content-end",
+        "btn",
+        "btn-secondary"
+      );
+      buttonElement.textContent = "Signature recueillie";
+      divElement.appendChild(buttonElement);
+      singatureStatusDiv.appendChild(divElement);
+
+    });
+}

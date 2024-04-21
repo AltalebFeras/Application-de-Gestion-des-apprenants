@@ -61,15 +61,19 @@
 
           </div>
           <div class="mx-2" >
-            <p class="card-text d-flex justify-content-end my-2 mx-2 font-weight-bold"><?php echo date('d-m-Y'); ?></p>
+            <p class="card-text d-flex justify-content-end my-2 mx-2 font-weight-bold"><?php echo date('d-m-Y'); 
+      var_dump($_SESSION['ID_Promo']);
+      var_dump($_SESSION['ID_Utilisateur']);
+
+      ?></p>
 
           </div>
         </div>
 
-        <div class="mx-2 ">
+        <div id="singatureStatusDiv"  class="mx-2 ">
 
           <form class="d-flex flex-column my-3 mx-2">
-            <input type="Code_Aleatoire" class="my-3 mx-2" name="Code_Aleatoire" type="number" placeholder="....."  />
+            <input type="number" class="my-3 mx-2" id="Code_Aleatoire" name="Code_Aleatoire" type="number" placeholder="....."  />
             <div class="d-flex flex-row-reverse" >
               <button id="matinValiderLeCodeApprenant" type="submit" class="my-3 mx-2 d-flex justify-content-end btn btn-primary">Valider présence</button>
             </div>

@@ -26,4 +26,13 @@ class  CoursController
 
     }
 
+
+    public function codeValidationMatin(){
+        
+        $coursRepositoty = new CoursRepositoty;
+        $coursRepositoty->insertNewCodeMatin();
+
+
+
+    }
 }

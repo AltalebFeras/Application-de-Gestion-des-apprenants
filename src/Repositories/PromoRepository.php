@@ -127,6 +127,7 @@ class PromoRepository
         } catch (PDOException $e) {
             return [];
         }
+        
     }
 
     public function getPromoDetails()
