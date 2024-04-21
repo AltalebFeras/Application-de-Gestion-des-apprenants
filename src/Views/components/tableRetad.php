@@ -14,7 +14,7 @@
     <option selected disabled>Select an utilisateur</option>
     <?php foreach ($utilisateurs as $utilisateur) : ?>
         <option value="<?php echo $utilisateur->getIDUtilisateur(); ?>">
-            <?php echo $utilisateur->getNom() . ' ' . $utilisateur->getPrenom(); ?>
+            <?php echo $utilisateur->getPrenom() . ' ' . $utilisateur->getNom(); ?>
 
         </option>
     <?php endforeach; ?>
