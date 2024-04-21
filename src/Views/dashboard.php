@@ -87,6 +87,8 @@ include_once __DIR__ . '/../Views/components/navbar.php';
         <script src="assets/scripts/createPromo.js" type="module"></script>
         <script src="assets/scripts/deletePromo.js" type="module"></script>
         <script src="assets/scripts/displayThisForm.js" type="module"></script>
+        <script src="assets/scripts/validateCodeApresMidi.js" type="module"></script>
+        <script src="assets/scripts/validateCode.js" type="module"></script>
 
 
       </div>

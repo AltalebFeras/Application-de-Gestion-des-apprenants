@@ -4,6 +4,7 @@ namespace src\Repositories;
 
 use PDO;
 use PDOException;
+use src\Models\Cours;
 use src\Models\Utilisateur;
 use src\Models\Database;
 
@@ -123,6 +124,51 @@ class UtilisateurRepository
         }
     }
 
+
+    public function getAllCours()
+    {
+        try {
+            $requestPayload = json_decode(file_get_contents('php://input'));
+
+            // Validate and sanitize input
+            $idThisPromo = null;
+            if ($requestPayload && isset($requestPayload->idThisPromo)) {
+                $idThisPromo = htmlspecialchars($requestPayload->idThisPromo);
+            }
+
+        
+            $query = "SELECT * FROM " . PREFIXE . "cours WHERE ID_Promo = :promo_id";
+
+
+            $stmt = $this->DB->prepare($query);
+
+            if ($idThisPromo !== null) {
+                $stmt->bindParam(':promo_id', $idThisPromo);
+            } else {
+                $stmt->bindParam(':promo_id', $_SESSION['ID_Promo']);
+            }
+
+            $stmt->execute();
+
+            $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $coursObjects = [];
+            foreach ($courses as $cours) {
+                $courss = new Cours();
+                $courss->ID_Cours = $cours['ID_Cours'];
+                $courss->Date_Cours = $cours['Date_Cours'];
+                $courss->Heure_Debut = $cours['Heure_Debut'];
+                $courss->Heure_Fin = $cours['Heure_Fin'];
+                $coursObjects[] = $courss;
+            }
+
+            return $coursObjects;
+        } catch (PDOException $e) {
+            // Log or handle the exception appropriately
+            error_log("Error fetching utilisateurs: " . $e->getMessage());
+            return [];
+        }
+    }
 
 
 
@@ -288,5 +334,39 @@ class UtilisateurRepository
     }
 
 
+
+    public function utilisateurParticipes(){
+
+        $db = new Database();
+        $conn = $db->getDB();
+        $STATUS = 'présent';
+    
+        $request = 'SELECT * FROM ' . PREFIXE . 'participation_statuts WHERE STATUS = ?';
+    
+        $stmt = $conn->prepare($request);
+        $stmt->bindValue(1, $STATUS);
+        $stmt->execute();
+    
+        $utilisateursIDS = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        $utilisateursDetails = array();
+        foreach ($utilisateursIDS as $utilisateur) {
+            $userID = $utilisateur['ID_Utilisateur'];
+            $detailsRequest = 'SELECT * FROM ' . PREFIXE . 'utilisateurs WHERE ID_Utilisateur = ? ';
+            $detailsStmt = $conn->prepare($detailsRequest);
+            $detailsStmt->bindValue(1, $userID);
+            $detailsStmt->execute();
+            $utilisateurDetails = $detailsStmt->fetch(PDO::FETCH_ASSOC);
+            $utilisateursDetails[] = $utilisateurDetails;
+        }
+    
+        return $utilisateursDetails;
+    }
+    
+
+
+
+
+    
    
 }

@@ -22,7 +22,8 @@ $utilisateurs = $utilisateurRepository->getAllUtilisateurs();
 $utilisateurObjects = $utilisateurRepository->getUserDetails();
 $utilisateur = $utilisateurObjects[0];
 $_SESSION['ID_Utilisateur'] = $utilisateur->getIDUtilisateur();
-
+$utilisateursDetails =$utilisateurRepository->utilisateurParticipes();
+$coursObjects = $utilisateurRepository->getAllCours();
 
 $coursRepositoty = new CoursRepositoty;
 $coursCodeMatin = $coursRepositoty->displayCodeMatin();

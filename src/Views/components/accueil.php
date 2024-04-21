@@ -106,7 +106,7 @@
         <div id="singatureApresMidiStatusDiv" class="mx-2 ">
 
           <form class="d-flex flex-column my-3 mx-2">
-            <input type="Code_Aleatoire1" class="my-3 mx-2" id="Code_Aleatoire1" name="Code_Aleatoire" type="number" placeholder="....." />
+            <input  class="my-3 mx-2" id="Code_Aleatoire1" name="Code_Aleatoire" type="number" placeholder="....." />
             <div class="d-flex flex-row-reverse" >
               <button id="apresMidiValiderLeCodeApprenant" type="submit" class="my-3 mx-2 d-flex justify-content-end btn btn-primary">Valider présence</button>
             </div>

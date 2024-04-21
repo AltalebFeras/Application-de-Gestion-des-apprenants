@@ -49,10 +49,10 @@
     singatureMatinStatusDiv.appendChild(formElement);
   
     // Append the script element
-    let scriptElement = document.createElement("script");
-    scriptElement.src = "assets/scripts/validateCode.js";
-    scriptElement.type = "module";
-    document.body.appendChild(scriptElement);
+    // let scriptElement = document.createElement("script");
+    // scriptElement.src = "assets/scripts/validateCode.js";
+    // scriptElement.type = "module";
+    // document.body.appendChild(scriptElement);
   }
   
   

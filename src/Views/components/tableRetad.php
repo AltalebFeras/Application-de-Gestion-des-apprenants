@@ -1,47 +1,31 @@
-
-
-
-
 <div class="d-flex justify-content-between my-3 mx-2">
-                        <div></div>
-                        <button id="ajouterRetardBtn" class="btn btn-success">Ajouter un retard</button>
-                    </div>
+    <div></div>
+    <button id="ajouterRetardBtn" class="btn btn-success">Ajouter un retard</button>
+</div>
 
 
 
 
 
 
+<label for="">aprrenants</label>
 
-                    <table class="table  my-3 mx-2">
-                        <thead>
-                            <tr>
-                                <th class="d-non" scope="col">ID Utilisateur</th>
-                                <th scope="col">Nom de famille</th>
-                                <th scope="col">Prénom</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Compte activé</th>
-                                <th scope="col">Rôle</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($utilisateurs as $utilisateur) : ?>
-                                <tr>
-                                    <td class="d-non"><?php echo $utilisateur->getIDUtilisateur(); ?></td>
-                                    <td><?php echo $utilisateur->getNom(); ?></td>
-                                    <td><?php echo $utilisateur->getPrenom() ?></td>
-                                    <td><?php echo $utilisateur->getEmail(); ?></td>
-                                    <td><?php echo $utilisateur->getCompteActive(); ?></td>
-                                    <td><?php if ($utilisateur->getIDRole() == 1) {
-                                            echo "apprenant";
-                                        } ?></td>
+<select class="form-select my-3 mx-2" id="utilisateurSelect">
+    <option selected disabled>Select an utilisateur</option>
+    <?php foreach ($utilisateurs as $utilisateur) : ?>
+        <option value="<?php echo $utilisateur->getIDUtilisateur(); ?>">
+            <?php echo $utilisateur->getNom() . ' ' . $utilisateur->getPrenom(); ?>
 
-                                    <td>
-                                        <button type="button" class="btn btn-link">Editer</button>
-                                        <button type="button" class="btn btn-link">Supprimer</button>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+        </option>
+    <?php endforeach; ?>
+</select>
+
+<label for="">cours</label>
+<select class="form-select my-3 mx-2" id="coursSelect">
+    <option selected disabled>Select a cours</option>
+    <?php foreach ($coursObjects as $cours) : ?>
+        <option value="<?php echo $cours->getIDCours(); ?>">
+            <?php echo  ' Le cours de ' . $cours->getDateCours() . ' du ' . $cours->getHeureDebut()  . ' au ' .  $cours->getHeureFin()   ;  ?>
+        </option>
+    <?php endforeach; ?>
+</select>

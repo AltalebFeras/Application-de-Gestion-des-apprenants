@@ -203,10 +203,10 @@ function createFormApresMidi() {
   singatureApresMidiStatusDiv.appendChild(formElement);
 
   // Append the script element
-  let scriptElement = document.createElement("script");
-  scriptElement.src = "assets/scripts/validateCodeApresMidi.js";
-  scriptElement.type = "module";
-  document.body.appendChild(scriptElement);
+  // let scriptElement = document.createElement("script");
+  // scriptElement.src = "assets/scripts/validateCodeApresMidi.js";
+  // scriptElement.type = "module";
+  // document.body.appendChild(scriptElement);
 }
 
 

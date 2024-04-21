@@ -14,6 +14,7 @@
                                                                                         echo $promoDetails['Nom']; ?>- matin</h3>
                         <p class="card-text d-flex justify-content-start mx-2"><?php echo $promoDetails['Place_Dispo'];
                                                                                 var_dump($promoDetails);
+                                                                                var_dump($coursObjects );
 
                                                                                 ?> participants</p>
 
@@ -36,7 +37,7 @@
             <div class="card-text mb-3 mx-2 bg-light ">
                 <div class=" mx-2 card-text d-flex justify-content-between">
                     <div>
-                        <h3 class=" mx-2 my-1 card-text d-flex justify-content-start"><?php  echo $promoDetails['Nom']; ?>- après midi</h3>
+                        <h3 class=" mx-2 my-1 card-text d-flex justify-content-start"><?php echo $promoDetails['Nom']; ?>- après midi</h3>
                         <p class="card-text d-flex justify-content-start mx-2"><?php echo $promoDetails['Place_Dispo'];; ?> participants</p>
 
                     </div>
@@ -97,9 +98,11 @@
                     <button class="nav-link active" id="home1-tab" data-bs-toggle="tab" data-bs-target="#home1" type="button" role="tab" aria-controls="home1" aria-selected="true">Tableau apprenants</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile1-tab" data-bs-toggle="tab" data-bs-target="#profile1" type="button" role="tab" aria-controls="profile1" aria-selected="false">Retards</button>
+                    <button class="nav-link" id="profile1-tab" data-bs-toggle="tab" data-bs-target="#profile1" type="button" role="tab" aria-controls="profile1" aria-selected="false">Apprenants participés</button>
                 </li>
-
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile2-tab" data-bs-toggle="tab" data-bs-target="#profile2" type="button" role="tab" aria-controls="profile2" aria-selected="false">Retards</button>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home1" role="tabpanel" aria-labelledby="home1-tab">
@@ -119,7 +122,30 @@
 
 
                 </div>
+
+
                 <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="profile1-tab">
+
+
+
+
+                    <div id="tableUserRetardDiv">
+
+
+                        <?php
+                        include_once __DIR__ . '/tablePresent.php';
+                        ?>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+                <div class="tab-pane fade" id="profile2" role="tabpane2" aria-labelledby="profile2-tab">
 
 
 
@@ -137,6 +163,7 @@
 
 
                 </div>
+
             </div>
 
         </div>
