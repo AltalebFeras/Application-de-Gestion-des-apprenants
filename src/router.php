@@ -104,6 +104,9 @@ switch ($route) {
     }
     break;
 
+    case HOME_URL . 'addAbsents':
+      $UtilisateurController->addAbsents();
+      break;
 
   case HOME_URL . 'deconnexion':
     $HomeController->quit();

@@ -24,6 +24,9 @@ $utilisateur = $utilisateurObjects[0];
 $_SESSION['ID_Utilisateur'] = $utilisateur->getIDUtilisateur();
 $utilisateursDetails =$utilisateurRepository->utilisateurParticipes();
 $coursObjects = $utilisateurRepository->getAllCours();
+$utilisateursDetails =$utilisateurRepository->utilisateurAbsent();
+
+
 
 $coursRepositoty = new CoursRepositoty;
 $coursCodeMatin = $coursRepositoty->displayCodeMatin();

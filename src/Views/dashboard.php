@@ -16,16 +16,7 @@ include_once __DIR__ . '/../Views/components/navbar.php';
   if (isset($_SESSION['role'])) {
     if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'formateur'|| $_SESSION['role'] == 'apprenant') {
       echo "<h2 class='m-2'>Bonjour " . $utilisateur->getPrenom() . "!</h2>"; 
-      // var_dump($_SESSION['role']);
-      // var_dump($_SESSION['Email']);
-      // var_dump($_SESSION['ID_Utilisateur']);
-      // var_dump($_SESSION['ID_Promo']);
-      // var_dump($getUserPromoIDs[0]);
-      // var_dump($getUserPromoIDs);
-      // var_dump($_SESSION['userPromoID']);
-      // var_dump($userPromoID);
-      
-      // var_dump($promoDetail);
+    ;
       foreach ($promoDetail as $promo) {
         
     }

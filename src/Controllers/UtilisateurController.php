@@ -216,4 +216,32 @@ class UtilisateurController
             exit();
         }
     }
+
+
+ public function addAbsents(){
+
+
+    $request = file_get_contents('php://input');
+
+    if ($request) {
+        $decodedRequest = json_decode($request);
+
+        if ($decodedRequest) {
+            $data = [
+                'ID_Utilisateur' => htmlspecialchars($decodedRequest->ID_Utilisateur),
+                'ID_Cours' => htmlspecialchars($decodedRequest->ID_Cours),
+              
+            ];
+
+            $UtilisateurRepository = new UtilisateurRepository();
+            $UtilisateurRepository->createAbsent($data);
+
+
+    include_once __DIR__ . '/../Views/components/displayAbsents.php';
+
+
+ }
+}
+}
+
 }

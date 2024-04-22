@@ -62,12 +62,7 @@
           </div>
           <div class="mx-2" >
             <p class="card-text d-flex justify-content-end my-2 mx-2 font-weight-bold"><?php echo date('d-m-Y'); 
-      var_dump($_SESSION['ID_Utilisateur']);
-      var_dump($ID_Promo);
-      var_dump($ID_Cours);
-      var_dump($ID_CoursApresMidi);
-      var_dump($getCode);
-      var_dump($getCodeApresMidi);
+      
 
       ?></p>
 

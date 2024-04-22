@@ -13,8 +13,7 @@
                         <h3 class=" mx-2 my-1 card-text d-flex justify-content-start"><?php
                                                                                         echo $promoDetails['Nom']; ?>- matin</h3>
                         <p class="card-text d-flex justify-content-start mx-2"><?php echo $promoDetails['Place_Dispo'];
-                                                                                var_dump($promoDetails);
-                                                                                var_dump($coursObjects );
+                                                                             
 
                                                                                 ?> participants</p>
 
@@ -101,7 +100,10 @@
                     <button class="nav-link" id="profile1-tab" data-bs-toggle="tab" data-bs-target="#profile1" type="button" role="tab" aria-controls="profile1" aria-selected="false">Apprenants participés</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile2-tab" data-bs-toggle="tab" data-bs-target="#profile2" type="button" role="tab" aria-controls="profile2" aria-selected="false">Retards</button>
+                    <button class="nav-link" id="profile2-tab" data-bs-toggle="tab" data-bs-target="#profile2" type="button" role="tab" aria-controls="profile2" aria-selected="false">Absents</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile3-tab" data-bs-toggle="tab" data-bs-target="#profile3" type="button" role="tab" aria-controls="profile3" aria-selected="false">Apprenants absent</button>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -129,7 +131,7 @@
 
 
 
-                    <div id="tableUserRetardDiv">
+                    <div id="tableUserPresentDiv">
 
 
                         <?php
@@ -150,11 +152,32 @@
 
 
 
-                    <div id="tableUserRetardDiv">
+                    <div id="tableAddAbsentDiv">
 
 
                         <?php
-                        include_once __DIR__ . '/tableRetad.php';
+                        include_once __DIR__ . '/addAbsents.php';
+                        ?>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+                
+                <div class="tab-pane fade" id="profile3" role="tabpane2" aria-labelledby="profile3-tab">
+
+
+
+
+                    <div id="tableUserAbsentDiv">
+
+
+                        <?php
+                        include_once __DIR__ . '/displayAbsents.php';
                         ?>
 
 

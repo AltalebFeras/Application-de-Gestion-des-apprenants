@@ -75,7 +75,6 @@ class UtilisateurRepository
         try {
             $requestPayload = json_decode(file_get_contents('php://input'));
 
-            // Validate and sanitize input
             $idThisPromo = null;
             if ($requestPayload && isset($requestPayload->idThisPromo)) {
                 $idThisPromo = htmlspecialchars($requestPayload->idThisPromo);
@@ -118,7 +117,6 @@ class UtilisateurRepository
 
             return $utilisateurObjects;
         } catch (PDOException $e) {
-            // Log or handle the exception appropriately
             error_log("Error fetching utilisateurs: " . $e->getMessage());
             return [];
         }
@@ -130,13 +128,12 @@ class UtilisateurRepository
         try {
             $requestPayload = json_decode(file_get_contents('php://input'));
 
-            // Validate and sanitize input
             $idThisPromo = null;
             if ($requestPayload && isset($requestPayload->idThisPromo)) {
                 $idThisPromo = htmlspecialchars($requestPayload->idThisPromo);
             }
 
-        
+
             $query = "SELECT * FROM " . PREFIXE . "cours WHERE ID_Promo = :promo_id";
 
 
@@ -164,7 +161,6 @@ class UtilisateurRepository
 
             return $coursObjects;
         } catch (PDOException $e) {
-            // Log or handle the exception appropriately
             error_log("Error fetching utilisateurs: " . $e->getMessage());
             return [];
         }
@@ -191,7 +187,7 @@ class UtilisateurRepository
             $user = $query->fetch(PDO::FETCH_ASSOC);
 
             if ($user) {
-                return $user; // Return the user data directly
+                return $user;  
             }
 
             return null;
@@ -272,9 +268,7 @@ class UtilisateurRepository
 
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                // Check if user exists
                 if ($row) {
-                    // Verify password
                     if (password_verify($Mot_De_Passe, $row['Mot_De_Passe'])) {
                         $_SESSION['connected'] = true;
                         $_SESSION['role'] = 'admin';
@@ -335,20 +329,21 @@ class UtilisateurRepository
 
 
 
-    public function utilisateurParticipes(){
+    public function utilisateurParticipes()
+    {
 
         $db = new Database();
         $conn = $db->getDB();
         $STATUS = 'présent';
-    
+
         $request = 'SELECT * FROM ' . PREFIXE . 'participation_statuts WHERE STATUS = ?';
-    
+
         $stmt = $conn->prepare($request);
         $stmt->bindValue(1, $STATUS);
         $stmt->execute();
-    
+
         $utilisateursIDS = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
         $utilisateursDetails = array();
         foreach ($utilisateursIDS as $utilisateur) {
             $userID = $utilisateur['ID_Utilisateur'];
@@ -359,14 +354,64 @@ class UtilisateurRepository
             $utilisateurDetails = $detailsStmt->fetch(PDO::FETCH_ASSOC);
             $utilisateursDetails[] = $utilisateurDetails;
         }
-    
+
         return $utilisateursDetails;
     }
-    
+
+    public function createAbsent($data)
+    {
 
 
+        $ID_Utilisateur = isset($data['ID_Utilisateur']) ? $data['ID_Utilisateur'] : null;
+        $ID_Cours = isset($data['ID_Cours']) ? $data['ID_Cours'] : null;
+ 
+            $Status = "absent";
 
 
-    
-   
+            $database = new Database();
+
+            $query = $database->getDB()->prepare('
+INSERT INTO ' . PREFIXE . 'participation_statuts (ID_Cours, ID_Utilisateur, Status) 
+VALUES (:ID_Cours, :ID_Utilisateur, :Status)
+');
+
+            $query->execute([
+                'ID_Cours' => $ID_Cours,
+                'ID_Utilisateur' => $ID_Utilisateur,
+                'Status' => $Status
+
+            ]);
+
+                 
+    }
+
+
+    public function utilisateurAbsent()
+    {
+
+        $db = new Database();
+        $conn = $db->getDB();
+        $STATUS = 'absent';
+
+        $request = 'SELECT * FROM ' . PREFIXE . 'participation_statuts WHERE STATUS = ?';
+
+        $stmt = $conn->prepare($request);
+        $stmt->bindValue(1, $STATUS);
+        $stmt->execute();
+
+        $utilisateursIDS = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $utilisateursDetail = array();
+        foreach ($utilisateursIDS as $utilisateur) {
+            $userID = $utilisateur['ID_Utilisateur'];
+            $detailsRequest = 'SELECT * FROM ' . PREFIXE . 'utilisateurs WHERE ID_Utilisateur = ? ';
+            $detailsStmt = $conn->prepare($detailsRequest);
+            $detailsStmt->bindValue(1, $userID);
+            $detailsStmt->execute();
+            $utilisateurDetails = $detailsStmt->fetch(PDO::FETCH_ASSOC);
+            $utilisateursDetail[] = $utilisateurDetails;
+        }
+
+        return $utilisateursDetail;
+    }
 }
