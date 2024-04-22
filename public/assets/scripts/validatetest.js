@@ -50,7 +50,7 @@
   
     // Append the script element
     let scriptElement = document.createElement("script");
-    scriptElement.src = "assets/scripts/validatetest.js";
+    scriptElement.src = "assets/scripts/validateCode.js";
     scriptElement.type = "module";
     document.body.appendChild(scriptElement);
   }
@@ -162,7 +162,7 @@ function createFormApresMidi() {
   singatureApresMidiStatusDiv.appendChild(formElement);
 
   let scriptElement = document.createElement("script");
-  scriptElement.src = "assets/scripts/validatetest.js";
+  scriptElement.src = "assets/scripts/validateCode.js";
   scriptElement.type = "module";
   document.body.appendChild(scriptElement);
 }

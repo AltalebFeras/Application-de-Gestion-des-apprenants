@@ -73,10 +73,10 @@
 
         <div id="singatureMatinStatusDiv"  class="mx-2 ">
 
-          <form class="d-flex flex-column my-3 mx-2">
+          <form class="d-flex flex-column my-3 mx-2"  >
             <input type="number" class="my-3 mx-2" id="Code_Aleatoire" name="Code_Aleatoire" type="number" placeholder="....."  />
             <div class="d-flex flex-row-reverse" >
-              <button id="matinValiderLeCodeApprenant" type="submit" class="my-3 mx-2 d-flex justify-content-end btn btn-primary">Valider présence</button>
+              <button id="matinValiderLeCodeApprenant" type="submit"  class="my-3 mx-2 d-flex justify-content-end btn btn-primary">Valider présence</button>
             </div>
           </form>
 

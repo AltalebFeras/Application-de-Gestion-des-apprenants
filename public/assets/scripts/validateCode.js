@@ -1,48 +1,48 @@
-function appendNewScripts() {
-  const mainPromo = document.getElementById("mainPromo");
-  let scripts = mainPromo.querySelectorAll("script");
+// function appendNewScripts() {
+//   const mainPromo = document.getElementById("mainPromo");
+//   let scripts = mainPromo.querySelectorAll("script");
 
-  for (let i = 0; i < scripts.length; i++) {
-    if (!scripts[i].innerText) {
-      let script = document.createElement("script");
-      script.src = scripts[i].src;
+//   for (let i = 0; i < scripts.length; i++) {
+//     if (!scripts[i].innerText) {
+//       let script = document.createElement("script");
+//       script.src = scripts[i].src;
 
-      mainPromo.removeChild(scripts[i]);
-      mainPromo.appendChild(script);
-    }
-  }
-}
+//       mainPromo.removeChild(scripts[i]);
+//       mainPromo.appendChild(script);
+//     }
+//   }
+// }
 
-document.getElementById("deconnexionBtn").addEventListener("click", () => {
-  const body = document.body;
-  fetch("/deconnexion")
-    .then((response) => {
-      if (response.ok) {
-        return response.text();
-      } else {
-        throw new Error("Logout failed");
-      }
-    })
-    .then((result) => {
-      body.innerHTML = result;
-    });
-});
+// document.getElementById("deconnexionBtn").addEventListener("click", () => {
+//   const body = document.body;
+//   fetch("/deconnexion")
+//     .then((response) => {
+//       if (response.ok) {
+//         return response.text();
+//       } else {
+//         throw new Error("Logout failed");
+//       }
+//     })
+//     .then((result) => {
+//       body.innerHTML = result;
+//     });
+// });
 
-document.getElementById("ajouterPromotionBtn").addEventListener("click", () => {
-  let promotionsDiv = document.getElementById("promotionsDiv");
-  let ajouterPromoDiv = document.getElementById("ajouterPromoDiv");
-  promotionsDiv.classList.add("d-none");
-  ajouterPromoDiv.classList.remove("d-none");
-});
+// document.getElementById("ajouterPromotionBtn").addEventListener("click", () => {
+//   let promotionsDiv = document.getElementById("promotionsDiv");
+//   let ajouterPromoDiv = document.getElementById("ajouterPromoDiv");
+//   promotionsDiv.classList.add("d-none");
+//   ajouterPromoDiv.classList.remove("d-none");
+// });
 
-document
-  .getElementById("btnRetourVersTousLesPromo")
-  .addEventListener("click", () => {
-    let promotionsDiv = document.getElementById("promotionsDiv");
-    let ajouterPromoDiv = document.getElementById("ajouterPromoDiv");
-    promotionsDiv.classList.remove("d-none");
-    ajouterPromoDiv.classList.add("d-none");
-  });
+// document
+//   .getElementById("btnRetourVersTousLesPromo")
+//   .addEventListener("click", () => {
+//     let promotionsDiv = document.getElementById("promotionsDiv");
+//     let ajouterPromoDiv = document.getElementById("ajouterPromoDiv");
+//     promotionsDiv.classList.remove("d-none");
+//     ajouterPromoDiv.classList.add("d-none");
+//   });
 
 
 
@@ -93,7 +93,7 @@ function createForm() {
 
   // Append the script element
   let scriptElement = document.createElement("script");
-  scriptElement.src = "assets/scripts/validateCode.js";
+  scriptElement.src = "assets/scripts/validateCodeApresMidi.js";
   scriptElement.type = "module";
   document.body.appendChild(scriptElement);
 }
@@ -203,10 +203,10 @@ function createFormApresMidi() {
   singatureApresMidiStatusDiv.appendChild(formElement);
 
   // Append the script element
-  // let scriptElement = document.createElement("script");
-  // scriptElement.src = "assets/scripts/validateCodeApresMidi.js";
-  // scriptElement.type = "module";
-  // document.body.appendChild(scriptElement);
+  let scriptElement = document.createElement("script");
+  scriptElement.src = "assets/scripts/validateCodeApresMidi.js";
+  scriptElement.type = "module";
+  document.body.appendChild(scriptElement);
 }
 
 
