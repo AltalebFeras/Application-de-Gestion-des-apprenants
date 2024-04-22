@@ -10,7 +10,6 @@
     <table class="table  my-3 mx-2">
         <thead>
             <tr>
-                <th class="d-non" scope="col">ID Utilisateur</th>
                 <th scope="col">Nom de famille</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Email</th>
@@ -22,7 +21,6 @@
         <tbody>
             <?php foreach ($utilisateurs as $utilisateur) : ?>
                 <tr>
-                    <td class="d-non"><?php echo $utilisateur->getIDUtilisateur(); ?></td>
                     <td><?php echo $utilisateur->getNom(); ?></td>
                     <td><?php echo $utilisateur->getPrenom() ?></td>
                     <td><?php echo $utilisateur->getEmail(); ?></td>
